@@ -27,9 +27,11 @@ func CryptoPassword(pwd, salt string) string {
 	return Md5Encode(pwd + salt)
 }
 
+var saltLen = 6
+
 // 加密,随机生成 Salt
 func CryptoPasswordWithSalt(pwd string) (string, string) {
-	salt := generateRandomSalt(6)
+	salt := generateRandomSalt(saltLen)
 	return Md5Encode(pwd + salt), salt
 }
 
@@ -50,4 +52,16 @@ func generateRandomSalt(n int) string {
 		b[i] = letters[rand.Intn(len(letters))]
 	}
 	return string(b)
+}
+
+// 混合密码+salt
+func MergePasswordSalt(pwd string, salt string) string {
+	return fmt.Sprintf("%s$%s", salt, pwd)
+}
+
+// 拆分密码和 salt
+func SplitPasswordSalt(pwd string) (string, string) {
+	sp := strings.SplitN(pwd, "$", 2)
+	password, salt := sp[0], sp[1]
+	return password, salt
 }

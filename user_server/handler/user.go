@@ -2,37 +2,19 @@ package handler
 
 import (
 	"context"
-	"shopping-sys/user_server/global"
-	"shopping-sys/user_server/model"
-	"shopping-sys/user_server/proto"
+	"fmt"
 
+	. "shopping-sys/user_server/global"
+	"shopping-sys/user_server/model"
+	. "shopping-sys/user_server/proto"
+	"shopping-sys/user_server/utils"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 	"gorm.io/gorm"
 )
 
-type UserServer struct{}
-
-// 分页查询 users
-func (*UserServer) GetUserList(ctx context.Context, req *proto.PageInfo) (*proto.UserListResponse, error) {
-	var users []model.User
-	var rsp proto.UserListResponse
-
-	// 获取总条数
-	result := global.DB.Find(&users)
-	if result.Error != nil {
-		return nil, result.Error
-	}
-	rsp.Total = uint64(result.RowsAffected) // 总条数
-
-	// 获取分页数据
-	global.DB.Scopes(Paginate(int(req.Page), int(req.PageSize))).Find(&users)
-
-	for _, u := range users {
-		userRsp := IntoDbUseUserInfoResponse(u)
-		rsp.Data = append(rsp.Data, &userRsp)
-	}
-
-	return &rsp, nil
-}
+type UserService struct{}
 
 // 分页逻辑
 func Paginate(page, pageSize int) func(db *gorm.DB) *gorm.DB {
@@ -53,21 +35,88 @@ func Paginate(page, pageSize int) func(db *gorm.DB) *gorm.DB {
 	}
 }
 
-func IntoDbUseUserInfoResponse(u model.User) proto.UserInfoResponse {
-	var userRsp proto.UserInfoResponse
+// 分页查询 users
+func (*UserService) GetUserList(ctx context.Context, req *PageInfo) (*UserListResponse, error) {
+	var users []model.User
+	var rsp UserListResponse
 
-	var user = proto.UserInfoResponse{
-		Id:       u.ID,
-		Mobile:   u.Mobile,
-		Password: u.Password,
-		NickName: u.NickName,
-		Gender:   u.Gender,
-		Role:     int32(u.Role),
+	// 获取总条数
+	result := DB.Find(&users)
+	if result.Error != nil {
+		return nil, result.Error
 	}
-	if u.Birthday != nil {
-		user.Birthday = uint64(u.Birthday.Unix())
+	rsp.Total = uint64(result.RowsAffected) // 总条数
+
+	// 获取分页数据
+	DB.Scopes(Paginate(int(req.Page), int(req.PageSize))).Find(&users)
+
+	for _, u := range users {
+		userRsp := IntoDbUseUserInfoResponse(u)
+		rsp.Data = append(rsp.Data, userRsp)
 	}
-	return userRsp
+
+	return &rsp, nil
+}
+
+// 使用手机查询用户
+func (*UserService) GetUserByMobile(ctx context.Context, req *MobileRequest) (*UserInfoResponse, error) {
+	var user model.User
+
+	result := DB.Where("mobile", req.Mobile).First(&user)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	if result.Error != nil {
+		return nil, status.Error(codes.NotFound, "用户不存在")
+	}
+
+	userInfo := IntoDbUseUserInfoResponse(user)
+
+	return userInfo, nil
+}
+
+// 使用ID查询用户
+func (*UserService) GetUserById(ctx context.Context, req *IdRequest) (*UserInfoResponse, error) {
+	var user model.User
+
+	result := DB.First(&user, req.Id)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	if result.Error != nil {
+		return nil, status.Errorf(codes.NotFound, "用户不存在")
+	}
+
+	userInfo := IntoDbUseUserInfoResponse(user)
+
+	return userInfo, nil
+}
+
+// 注册用户
+func (slf *UserService) CreateUser(ctx context.Context, req *CreateUserInfo) (*UserInfoResponse, error) {
+	_, err := slf.GetUserByMobile(ctx, &MobileRequest{Mobile: req.Mobile})
+	if err != nil {
+		return nil, status.Errorf(codes.AlreadyExists, "用户已存在")
+	}
+
+	//  密码加密
+	enPwd, salt := utils.CryptoPasswordWithSalt(req.Password)
+	saltPwd := utils.MergePasswordSalt(salt, enPwd)
+	// 创建用户
+	user := model.User{
+		Mobile:   req.Mobile,
+		NickName: req.NickName,
+		Password: saltPwd,
+	}
+
+	result := DB.Create(&user)
+	if result.Error != nil {
+		return nil, status.Errorf(codes.AlreadyExists, fmt.Sprint("用户创建失败", result.Error.Error()))
+	}
+
+	userInfo := IntoDbUseUserInfoResponse(user)
+
+	return userInfo, nil
 }
 
 // type UserServer interface {
