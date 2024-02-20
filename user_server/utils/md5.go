@@ -36,7 +36,7 @@ func CryptoPasswordWithSalt(pwd string) (string, string) {
 }
 
 // 验证密码
-func ValidPassword(pwd, salt string, source_pwd string) bool {
+func ValidPassword(pwd, salt, source_pwd string) bool {
 	code := Md5Encode(pwd + salt)
 	fmt.Println("code:", code)
 	fmt.Println("source_pwd:", source_pwd)
