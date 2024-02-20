@@ -10,6 +10,7 @@ func InitUserRouter(route *gin.RouterGroup) {
 	userRoute := route.Group("user")
 	{
 		userRoute.GET("/list", api.HandlerGetList)
+		userRoute.POST("/login", api.HandlerLogin)
 	}
 
 }

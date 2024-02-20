@@ -73,6 +73,7 @@ func TestUserUpdate(t *testing.T) {
 	_, err := client.UpdateUser(context.Background(), &UpdateUserInfo{
 		Id:       10,
 		NickName: "zhouzheng",
+		Mobile:   "13340717428",
 	})
 	if err != nil {
 		panic(fmt.Sprint("error:", err))
@@ -84,9 +85,9 @@ func main() {
 	defer conn.Close()
 
 	// TestCreateUser(nil) // 创建
-	TestGetUserList(nil) // 查列表
+	// TestGetUserList(nil) // 查列表
 	// TestGetUserById(nil)// 主键查询
 	// TestGetUserByMobile(nil)// 条件查询
-	// TestUserUpdate(nil) // 更新用户信息
+	TestUserUpdate(nil) // 更新用户信息
 
 }

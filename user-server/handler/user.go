@@ -155,10 +155,8 @@ func (*UserService) UpdateUser(ctx context.Context, req *UpdateUserInfo) (*empty
 // 验证密码
 func (*UserService) CheckPassword(ctx context.Context, req *CheckPasswordInfo) (*CheckedResponse, error) {
 	pwd, salt := utils.SplitPasswordSalt(req.EncryptedPassword)
-	is_validate := utils.ValidPassword(pwd, salt, req.Password)
-	// if !is_validate {
-	// 	return &CheckedResponse{Success: false}, status.Errorf(codes.PermissionDenied, "密码校验不通过")
-	// }
+	is_validate := utils.ValidPassword(req.Password, salt, pwd)
+	fmt.Println("is_validate:", is_validate)
 
 	return &CheckedResponse{Success: is_validate}, nil
 }
