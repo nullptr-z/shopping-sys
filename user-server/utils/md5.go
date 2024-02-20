@@ -38,8 +38,6 @@ func CryptoPasswordWithSalt(pwd string) (string, string) {
 // 验证密码
 func ValidPassword(pwd, salt, source_pwd string) bool {
 	code := Md5Encode(pwd + salt)
-	fmt.Println("code:", code)
-	fmt.Println("source_pwd:", source_pwd)
 	return code == source_pwd
 }
 
@@ -62,6 +60,9 @@ func MergePasswordSalt(pwd string, salt string) string {
 // 拆分密码和 salt
 func SplitPasswordSalt(pwd string) (string, string) {
 	sp := strings.SplitN(pwd, "$", 2)
-	password, salt := sp[0], sp[1]
+	var password, salt = pwd, ""
+	if len(sp) >= 2 {
+		password, salt = sp[0], sp[1]
+	}
 	return password, salt
 }

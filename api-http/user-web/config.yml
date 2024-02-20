@@ -7,3 +7,6 @@ log:
   max_size: 200
   max_age: 30
   max_backups: 7
+rpc:
+  ip: 192.168.3.9
+  port: 10001

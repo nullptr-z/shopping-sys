@@ -31,7 +31,7 @@ func Routers() *gin.Engine {
 	// 	c.Next()
 	// })
 
-	routeRoot := g.Group("/v1")
+	routeRoot := g.Group("/u/v1")
 	router.InitUserRouter(routeRoot)
 
 	fmt.Println("Register routers .......")

@@ -3,3 +3,106 @@
 2024-02-20T20:48:58.649618+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/v1/user/list", "status": 200, "latency": "[141.917µs]", "clientIP": "[::1]"}
 2024-02-20T20:48:59.057961+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/favicon.ico", "status": 404, "latency": "[3.167µs]", "clientIP": "[::1]"}
 2024-02-20T20:51:31.654253+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/v1/user/list", "status": 200, "latency": "[8.8945ms]", "clientIP": "[::1]"}
+2024-02-20T20:59:27.830003+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T20:59:39.393063+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:10:17.70925+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:10:41.583612+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:13:46.203393+08:00	[34mINFO[0m	initialize/logger.go:82	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[2.180541ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:16:41.331589+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:16:46.666317+08:00	[35mDEBUG[0m	api/user.go:12	get user list
+2024-02-20T21:16:46.666714+08:00	[34mINFO[0m	initialize/logger.go:82	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[379.5µs]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:18:06.944111+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:18:12.833722+08:00	[35mDEBUG[0m	api/user.go:12	get user list
+2024-02-20T21:18:12.834255+08:00	[34mINFO[0m	initialize/logger.go:82	requestDetails{method 15 0 GET <nil>} {uri 15 0 /u/v1/user/list <nil>} {status 11 200  <nil>} {latency 15 0 [521.667µs] <nil>} {clientIP 15 0 [127.0.0.1] <nil>}
+2024-02-20T21:18:28.395119+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:18:30.245169+08:00	[35mDEBUG[0m	api/user.go:12	get user list
+2024-02-20T21:18:30.245474+08:00	[34mINFO[0m	initialize/logger.go:82	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[297.166µs]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:19:15.158117+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:19:17.889931+08:00	[35mDEBUG[0m	api/user.go:12	get user list
+2024-02-20T21:19:17.890265+08:00	[34mINFO[0m	initialize/logger.go:82	requestDetails	{"\n method": "GET", "\n uri": "/u/v1/user/list", "status": 200, "\n latency": "[361.417µs]", "\n clientIP": "[127.0.0.1]"}
+2024-02-20T21:19:41.001554+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:19:44.69664+08:00	[35mDEBUG[0m	api/user.go:12	get user list
+2024-02-20T21:19:44.697077+08:00	[34mINFO[0m	initialize/logger.go:83	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[410.5µs]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:20:24.885207+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:20:27.889252+08:00	[35mDEBUG[0m	api/user.go:12	get user list
+2024-02-20T21:20:27.890145+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method GET\n": "\n", "uri": "/u/v1/user/list", "status": 200, "latency": "[856.666µs]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:21:55.057044+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:21:59.979984+08:00	[35mDEBUG[0m	api/user.go:12	get user list
+2024-02-20T21:21:59.980322+08:00	[35mDEBUG[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[355.166µs]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:22:24.327707+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:22:25.779507+08:00	[35mDEBUG[0m	api/user.go:12	get user list
+2024-02-20T21:22:25.779992+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[465.333µs]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:42:38.787693+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:42:59.756258+08:00	[31mERROR[0m	api/user.go:23	[HandlerGetList] connect rpc server of user failed	{"msg": "parse \"passthrough:///127.0.0.1:%!s(int=10001)\": invalid URL escape \"%!s\""}
+api-http/user-web/api.HandlerGetList
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:23
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-20T21:43:53.215825+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:43:55.746534+08:00	[31mERROR[0m	api/user.go:23	[HandlerGetList] connect rpc server of user failed	{"msg": "parse \"passthrough:///192.168.3.9:%!s(int=10001)\": invalid URL escape \"%!s\""}
+api-http/user-web/api.HandlerGetList
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:23
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-20T21:44:31.066854+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T21:44:36.361735+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[98.200583ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:44:52.83288+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[9.293542ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T21:52:36.164805+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[71.09875ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T22:20:14.160768+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T22:20:20.75376+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[84.567667ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T22:21:18.558202+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T22:21:57.16368+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T22:22:05.746634+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[173.167417ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T22:22:28.538903+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T22:22:36.701224+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[31.669958ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T22:23:21.351264+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T22:23:26.774833+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[31.660208ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T22:24:32.700139+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T22:24:33.685337+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[58.990875ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T22:42:21.669157+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[86.305208ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T22:43:08.431732+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[69.800959ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T23:03:01.613923+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[56.558125ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T23:03:24.827538+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[82.683583ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T23:09:02.797491+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[65.187042ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T23:09:17.54078+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=5", "status": 200, "latency": "[11.520334ms]", "clientIP": "[127.0.0.1]"}
+2024-02-20T23:11:22.315138+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=2", "status": 200, "latency": "[86.744959ms]", "clientIP": "[127.0.0.1]"}
