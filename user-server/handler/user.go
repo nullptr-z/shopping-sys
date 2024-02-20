@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"time"
 
-	. "shopping-sys/user_server/global"
-	"shopping-sys/user_server/model"
-	"shopping-sys/user_server/proto"
-	. "shopping-sys/user_server/proto"
-	"shopping-sys/user_server/utils"
+	. "user-server/global"
+	"user-server/model"
+	"user-server/proto"
+	. "user-server/proto"
+	"user-server/utils"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

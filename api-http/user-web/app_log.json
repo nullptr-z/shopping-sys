@@ -1,1 +1,5 @@
 2024-02-20T17:54:44.950118+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T20:48:55.728893+08:00	[34mINFO[0m	user-web/main.go:27	run service, port:%!(EXTRA int=11001)
+2024-02-20T20:48:58.649618+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/v1/user/list", "status": 200, "latency": "[141.917µs]", "clientIP": "[::1]"}
+2024-02-20T20:48:59.057961+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/favicon.ico", "status": 404, "latency": "[3.167µs]", "clientIP": "[::1]"}
+2024-02-20T20:51:31.654253+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/v1/user/list", "status": 200, "latency": "[8.8945ms]", "clientIP": "[::1]"}

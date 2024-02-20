@@ -4,8 +4,8 @@ import (
 	"flag"
 	"fmt"
 	"net"
-	"shopping-sys/user_server/handler"
-	"shopping-sys/user_server/proto"
+	"user-server/handler"
+	"user-server/proto"
 
 	"google.golang.org/grpc"
 )

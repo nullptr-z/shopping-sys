@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
-	"shopping-sys/user_server/proto"
-	. "shopping-sys/user_server/proto"
 	"testing"
+	"user-server/proto"
+	. "user-server/proto"
 
 	"google.golang.org/grpc"
 )

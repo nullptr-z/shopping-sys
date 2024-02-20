@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"shopping-sys/user_server/model"
-	"shopping-sys/user_server/proto"
+	"user-server/model"
+	"user-server/proto"
 )
 
 // 数据库查询的 user 数据转换到 proto.UserInfoResponse

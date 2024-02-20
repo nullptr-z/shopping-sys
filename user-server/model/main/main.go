@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm/logger"
 	"gorm.io/gorm/schema"
 
-	"shopping-sys/user_server/model"
+	"user-server/model"
 )
 
 func main() {
