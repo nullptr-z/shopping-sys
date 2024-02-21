@@ -62,3 +62,442 @@ net/http.(*conn).serve
 2024-02-21T00:45:24.660262+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[57.236291ms]", "clientIP": "[127.0.0.1]"}
 2024-02-21T00:45:31.783837+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[5.028708ms]", "clientIP": "[127.0.0.1]"}
 2024-02-21T00:45:42.500443+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[7.071042ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:12:43.394857+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:12:43.399745+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[134.443042ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:13:00.86258+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:13:00.863857+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[53.260958ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:13:28.216318+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:13:28.217022+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[11.973792ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:16:31.389385+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[79.963709ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:16:50.50185+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[5.912334ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:16:50.79434+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[2.793458ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:17:42.388995+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[89.043292ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:17:47.597833+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[7.567083ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:18:09.907952+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:18:09.911058+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[19.662667ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:18:58.568181+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:18:58.569389+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[74.857333ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:19:01.515909+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:19:01.516433+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[16.978709ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:21:12.466801+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:21:12.467349+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[81.958209ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:22:01.986492+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:22:01.986932+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[100.977ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:22:25.161554+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:22:25.162273+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[74.703958ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:22:57.27577+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:22:57.277041+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[83.696875ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:23:30.787417+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:23:30.788042+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[80.32325ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:23:50.039006+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:23:50.040947+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[96.4505ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:25:30.994753+08:00	[31mERROR[0m	api/user.go:101	[GenToken] 生成 token 出错
+api-http/user-web/api.HandlerLogin
+	/Users/zhouzheng/shoping-sys/api-http/user-web/api/user.go:101
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-http/user-web/initialize.LoggerFormateOutput
+	/Users/zhouzheng/shoping-sys/api-http/user-web/initialize/logger.go:68
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/Users/zhouzheng/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/local/go/src/net/http/server.go:2938
+net/http.(*conn).serve
+	/usr/local/go/src/net/http/server.go:2009
+2024-02-21T16:25:30.997664+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[90.480959ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:26:55.000345+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[86.837833ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:27:16.482234+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[78.523375ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:38:18.947429+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[70.778125ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:39:22.243288+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[75.297125ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:39:30.264706+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[7.97475ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:39:50.073115+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[16.213708ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:40:04.567135+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[7.165458ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:40:15.067448+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[11.713167ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:40:41.26278+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[6.743042ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:40:45.779649+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[10.918292ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:41:44.852346+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[464.875µs]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:41:52.658577+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[591.125µs]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:42:14.478491+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[416.709µs]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:42:19.848138+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[148.916µs]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:43:45.348286+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/base/register", "status": 404, "latency": "[35.541µs]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:44:03.630226+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[83.177541ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:44:46.128982+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[67.70725ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:44:53.557689+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[1.069ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:52:57.468653+08:00	[34mINFO[0m	middleware/authorization.go:17	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T16:52:57.469579+08:00	[34mINFO[0m	middleware/authorization.go:25	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T16:52:57.469919+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[1.281291ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:53:06.150852+08:00	[34mINFO[0m	middleware/authorization.go:17	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T16:53:06.163125+08:00	[34mINFO[0m	middleware/authorization.go:25	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T16:53:06.164038+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[13.357875ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:53:07.329873+08:00	[34mINFO[0m	middleware/authorization.go:17	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T16:53:07.330262+08:00	[34mINFO[0m	middleware/authorization.go:25	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T16:53:07.33039+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[518.959µs]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:53:20.935287+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[92.621292ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:53:25.946836+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[13.157958ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:53:27.429829+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[4.063792ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:53:32.425975+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[4.344416ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T16:53:44.524708+08:00	[34mINFO[0m	middleware/authorization.go:17	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T16:53:44.525892+08:00	[34mINFO[0m	middleware/authorization.go:25	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T16:53:44.526317+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[1.659625ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:08:34.07357+08:00	[34mINFO[0m	middleware/authorization.go:17	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:08:34.074678+08:00	[34mINFO[0m	middleware/authorization.go:25	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:08:34.075058+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[1.551625ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:08:38.275264+08:00	[34mINFO[0m	middleware/authorization.go:17	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:08:38.275432+08:00	[34mINFO[0m	middleware/authorization.go:25	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:08:38.275807+08:00	[34mINFO[0m	middleware/authorization.go:39	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:08:38.357492+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[82.163083ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:08:50.472191+08:00	[34mINFO[0m	middleware/authorization.go:17	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:08:50.472971+08:00	[34mINFO[0m	middleware/authorization.go:25	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:08:50.473141+08:00	[34mINFO[0m	middleware/authorization.go:39	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:08:52.385336+08:00	[34mINFO[0m	middleware/authorization.go:17	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:08:52.385508+08:00	[34mINFO[0m	middleware/authorization.go:25	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:08:52.385593+08:00	[34mINFO[0m	middleware/authorization.go:39	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:09:10.997657+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:09:10.999714+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:09:11.001167+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:09:27.269703+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:09:27.270291+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:09:27.27079+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[1.155708ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:09:41.375296+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:09:41.376597+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:09:41.377413+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[1.931416ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:09:44.865998+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:09:44.866091+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:09:44.866351+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:10:13.200159+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:10:13.201316+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:10:13.201626+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:10:26.54696+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:10:26.547636+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:10:26.548069+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:11:21.721588+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=)
+2024-02-21T17:11:21.724578+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[3.338542ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:11:53.874174+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "POST", "uri": "/u/v1/user/login", "status": 200, "latency": "[84.051375ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:12:15.965804+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDY3MTN9.MSBkO0wrOBsy-BawfY0V9wEVnqxCf1wefwAHNFsrryk)
+2024-02-21T17:12:15.966385+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDY3MTN9.MSBkO0wrOBsy-BawfY0V9wEVnqxCf1wefwAHNFsrryk)
+2024-02-21T17:12:15.967413+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[1.679208ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:12:34.08145+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDY3MTN9.MSBkO0wrOBsy-BawfY0V9wEVnqxCf1wefwAHNFsrryk)
+2024-02-21T17:12:34.083644+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDY3MTN9.MSBkO0wrOBsy-BawfY0V9wEVnqxCf1wefwAHNFsrryk)
+2024-02-21T17:12:34.083798+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[3.265791ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:12:55.760172+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:12:55.761281+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:12:55.761654+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:12:55.761909+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[1.72975ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:13:48.356929+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:13:48.358251+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:13:48.358505+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:13:48.426063+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[69.16175ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T17:22:17.280779+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:22:17.281631+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T17:22:17.281956+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T17:22:17.370899+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[90.175041ms]", "clientIP": "[127.0.0.1]"}

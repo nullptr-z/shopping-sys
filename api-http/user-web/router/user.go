@@ -2,6 +2,7 @@ package router
 
 import (
 	"api-http/user-web/api"
+	"api-http/user-web/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -9,7 +10,7 @@ import (
 func InitUserRouter(route *gin.RouterGroup) {
 	userRoute := route.Group("user")
 	{
-		userRoute.GET("/list", api.HandlerGetList)
+		userRoute.GET("/list", middleware.Authorization, middleware.AuthAdmin, api.HandlerGetList)
 		userRoute.POST("/login", api.HandlerLogin)
 	}
 

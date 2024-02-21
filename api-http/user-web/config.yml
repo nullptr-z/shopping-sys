@@ -10,3 +10,6 @@ log:
 rpc:
   ip: 192.168.3.9
   port: 10001
+jwt:
+  signs_key: Hv:X}iHgXc7-G_g5Nr9uD:Ah.cev.?F%
+  issuer: zz

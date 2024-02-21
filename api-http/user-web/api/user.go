@@ -3,6 +3,7 @@ package api
 import (
 	"api-http/user-web/forms"
 	"api-http/user-web/proto"
+	"api-http/user-web/utils"
 	. "api-http/user-web/utils"
 	"context"
 	"fmt"
@@ -91,5 +92,21 @@ func HandlerLogin(g *gin.Context) {
 		return
 	}
 
-	g.JSON(http.StatusOK, gin.H{"success": true, "msg": "登陆成功"})
+	token, err := utils.GenToken(&CustomClaims{
+		ID:          uint(user.Id),
+		NickName:    user.NickName,
+		AuthorityId: uint(user.Role),
+	})
+	if err != nil {
+		zap.S().Errorw("[GenToken] 生成 token 出错")
+		ResponseError(g, CodeServerInternal, "Token 生成失败")
+		return
+	}
+
+	g.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"msg":     "登陆成功",
+		"token":   token,
+		"expired": utils.TokenExpireDuration,
+	})
 }
