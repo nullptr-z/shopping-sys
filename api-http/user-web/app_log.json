@@ -501,3 +501,28 @@ net/http.(*conn).serve
 2024-02-21T17:22:17.281956+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
 
 2024-02-21T17:22:17.370899+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[90.175041ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T20:46:19.824698+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T20:46:19.84435+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-21T20:46:19.847235+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-21T20:46:19.914836+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[92.63075ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T20:55:12.753788+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[66.843708ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T20:55:13.229902+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/favicon.ico", "status": 404, "latency": "[17.125µs]", "clientIP": "[127.0.0.1]"}
+2024-02-21T20:55:24.606955+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[70.275917ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T20:55:31.419351+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[12.585ms]", "clientIP": "[::1]"}
+2024-02-21T20:55:31.810374+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/favicon.ico", "status": 404, "latency": "[3.417µs]", "clientIP": "[::1]"}
+2024-02-21T20:55:32.83372+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[6.131333ms]", "clientIP": "[::1]"}
+2024-02-21T20:55:42.831948+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[14.647417ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T20:55:43.505379+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/favicon.ico", "status": 404, "latency": "[26.541µs]", "clientIP": "[192.168.3.9]"}
+2024-02-21T20:55:48.636115+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[5.19225ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T20:59:20.594501+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/", "status": 404, "latency": "[2.760625ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T20:59:37.372593+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/", "status": 404, "latency": "[100.833µs]", "clientIP": "[192.168.3.9]"}
+2024-02-21T21:02:02.01705+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/", "status": 404, "latency": "[90.583µs]", "clientIP": "[192.168.3.9]"}
+2024-02-21T21:02:46.541915+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[85.913042ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T21:02:48.19144+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[4.056334ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T21:03:18.744189+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[22.851792ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T21:03:27.88766+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[2.99625ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T21:03:37.391912+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[6.114917ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T21:03:51.766681+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[9.304291ms]", "clientIP": "[192.168.3.9]"}
+2024-02-21T21:10:02.591556+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[86.569458ms]", "clientIP": "[127.0.0.1]"}
+2024-02-21T21:10:40.767579+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list", "status": 200, "latency": "[6.897875ms]", "clientIP": "[127.0.0.1]"}
