@@ -110,3 +110,46 @@ func HandlerLogin(g *gin.Context) {
 		"expired": utils.TokenExpireDuration,
 	})
 }
+
+func HandlerRegister(g *gin.Context) {
+	var regisForm forms.RegisterUser
+	if err := g.ShouldBind(&regisForm); err != nil {
+		zap.S().Errorw("[Register ShouldBind] 参数绑定错误", err.Error())
+		ResponseError(g, CodeInvalidParams)
+		return
+	}
+	if _, err := govalidator.ValidateStruct(regisForm); err != nil {
+		zap.S().Errorw("[Register Validate form data] 参数验证不通过", err.Error())
+		ResponseError(g, CodeInvalidParams)
+		return
+	}
+	if regisForm.ConfirmPwd != regisForm.Password {
+		zap.S().Errorw("[Register Validate form data] 两次密码不一致")
+		ResponseError(g, CodeInvalidParams, "两次密码不一致")
+		return
+	}
+
+	// 调用grpc登录服务
+	client := connGrpc()
+	_, err := client.GetUserByMobile(context.Background(), &proto.MobileRequest{Mobile: regisForm.Mobile})
+	if err == nil {
+		zap.S().Errorw("[Register] 用户已存在")
+		ResponseError(g, CodeUserExists, "用户已存在")
+		return
+	}
+
+	_, err = client.CreateUser(context.Background(), &proto.CreateUserInfo{
+		NickName: regisForm.ConfirmPwd,
+		Password: regisForm.Password,
+		Mobile:   regisForm.Mobile,
+	})
+	if err != nil {
+		zap.S().Errorw("[Register CreateUser] 创建用户出错")
+		ResponseError(g, CodeServerInternal, "创建用户出错")
+		return
+	}
+	g.JSON(http.StatusOK, gin.H{
+		"success": true,
+		"msg":     "用户创建成功",
+	})
+}
