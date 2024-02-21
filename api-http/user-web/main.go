@@ -32,12 +32,12 @@ func main() {
 }
 
 func startService(g *gin.Engine) {
+	// binding socket
 	host := viper.GetString("host")
-	fmt.Println("host:", host)
 	port := viper.GetInt("port")
-	fmt.Println("port:", port)
 	addr := fmt.Sprintf("%s:%d", host, port)
 	srv := &http.Server{Addr: addr, Handler: g}
+
 	go func() {
 		fmt.Print("\n Listening on: http://", addr, "\n\n")
 		if err := srv.ListenAndServe(); err != nil {
