@@ -1,6 +1,7 @@
-host: 0.0.0.0
+host: 192.168.3.9
 port: 10001
 mode: debug
+name: user-server
 
 log:
   level: debug
@@ -15,3 +16,7 @@ mysql:
   host: 127.0.0.1
   port: 3306
   dbname: shop_user_srv
+
+consul:
+  host: 192.168.3.9
+  port: 8500
