@@ -1,0 +1,18 @@
+
+### 注册微服务
+PUT http://127.0.0.1:8500/v1/agent/service/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "Name": "user-web",
+  "ID": "user-web",
+  "Address": "127.0.0.1",
+  "Port": 10001,
+  "Tags": ["user","login","register","web","http"]
+}
+
+### 注销服务
+
+# 在后面拼接服务的 ID
+PUT http://127.0.0.1:8500/v1/agent/service/deregister/user-web HTTP/1.1
+Content-Type: application/json

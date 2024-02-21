@@ -33,7 +33,9 @@ func main() {
 
 func startService(g *gin.Engine) {
 	host := viper.GetString("host")
+	fmt.Println("host:", host)
 	port := viper.GetInt("port")
+	fmt.Println("port:", port)
 	addr := fmt.Sprintf("%s:%d", host, port)
 	srv := &http.Server{Addr: addr, Handler: g}
 	go func() {
