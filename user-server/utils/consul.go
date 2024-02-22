@@ -40,7 +40,7 @@ func RegisterRpcInConsul(host string, port int32) {
 	registration := new(api.AgentServiceRegistration)
 	registration.ID = viper.GetString("name")                                // 服务ID，唯一
 	registration.Name = viper.GetString("name")                              // 服务名称
-	registration.Port = viper.GetInt("port")                                 // 服务端口
+	registration.Port = int(port)                                            // 服务端口
 	registration.Tags = []string{"user", "login", "register", "web", "http"} // 可选标签
 	registration.Address = host                                              // 服务地址
 	registration.Check = check                                               // 如果不填写，默认健康的

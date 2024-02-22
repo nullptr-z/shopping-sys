@@ -22,7 +22,7 @@ func main() {
 	initialize.MySql()
 
 	host_defualt := viper.GetString("host")
-	port_defualt := viper.GetInt("port")
+	port_defualt := utils.GetFreePort()
 
 	// get ip:port from terminal； --help 会得到参数提示
 	host := flag.String("ip", host_defualt, "ip address")

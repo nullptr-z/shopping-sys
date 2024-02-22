@@ -1,5 +1,5 @@
 host: 192.168.3.9
-port: 10001
+# port: 10001 动态获取
 mode: debug
 name: user-server
 

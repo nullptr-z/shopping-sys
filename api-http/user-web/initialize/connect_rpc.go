@@ -68,5 +68,6 @@ func ConnUserRpc() error {
 	// 创建 grpc client
 	global.UserRpc = proto.NewUserClient(conn)
 
+	fmt.Println("Connect User gRpc .......")
 	return err
 }
