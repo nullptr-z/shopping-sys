@@ -25,7 +25,7 @@ func client() *api.Client {
 	return client
 }
 
-func Register(host string, port int32) {
+func RegisterRpcInConsul(host string, port int32) {
 	client := client()
 	// 添加需要健康检查的微服务信息
 	check := &api.AgentServiceCheck{
@@ -40,7 +40,7 @@ func Register(host string, port int32) {
 	registration := new(api.AgentServiceRegistration)
 	registration.ID = viper.GetString("name")                                // 服务ID，唯一
 	registration.Name = viper.GetString("name")                              // 服务名称
-	registration.Port = 11001                                                // 服务端口
+	registration.Port = viper.GetInt("port")                                 // 服务端口
 	registration.Tags = []string{"user", "login", "register", "web", "http"} // 可选标签
 	registration.Address = host                                              // 服务地址
 	registration.Check = check                                               // 如果不填写，默认健康的

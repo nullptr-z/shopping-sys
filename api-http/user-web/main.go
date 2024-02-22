@@ -24,6 +24,10 @@ func main() {
 		fmt.Println("Failed initialized Init Logger", err)
 		return
 	}
+	if err := initialize.ConnUserRpc(); err != nil {
+		fmt.Println("Failed Connect User Rpc", err)
+		return
+	}
 	// 注册路由
 	g := initialize.Routers()
 

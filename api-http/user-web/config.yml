@@ -8,9 +8,18 @@ log:
   max_size: 200
   max_age: 30
   max_backups: 7
-rpc:
-  ip: 192.168.3.9
-  port: 10001
+
 jwt:
   signs_key: Hv:X}iHgXc7-G_g5Nr9uD:Ah.cev.?F%
   issuer: zz
+
+# 在注册中心 Consul，通过 name/ID 来找到 gRPC服务的地址和端口
+userServer:
+  name: user-server
+  ID: user-server
+  # host: 192.168.3.9
+  # port: 10001
+
+consul:
+  host: 192.168.3.9
+  port: 8500

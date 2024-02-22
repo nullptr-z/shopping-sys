@@ -1,6 +1,7 @@
 package global
 
 import (
+	"api-http/user-web/proto"
 	"api-http/user-web/utils"
 	"strconv"
 
@@ -17,6 +18,8 @@ const (
 // middle.authorization中设置的
 var (
 	ContextUserIDKey = "claim"
+
+	UserRpc proto.UserClient
 )
 
 func GetUserId(g *gin.Context) string {

@@ -2,43 +2,25 @@ package api
 
 import (
 	"api-http/user-web/forms"
+	"api-http/user-web/global"
 	"api-http/user-web/proto"
 	"api-http/user-web/utils"
 	. "api-http/user-web/utils"
 	"context"
-	"fmt"
 	"net/http"
 	"strconv"
 
 	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 )
 
-func connGrpc() proto.UserClient {
-	// 链接 grpc 服务
-	ip, port := viper.Get("rpc.ip"), viper.Get("rpc.port")
-	rpcAddress := fmt.Sprintf("%s:%d", ip, port)
-	conn, err := grpc.Dial(rpcAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
-	if err != nil {
-		zap.S().Errorw("[HandlerGetList] connect rpc server of user failed", "msg", err.Error())
-	}
-	// 创建 grpc client
-	client := proto.NewUserClient(conn)
-
-	return client
-}
-
 func HandlerGetList(g *gin.Context) {
-	client := connGrpc()
 	// 获取请求参数
 	page, _ := strconv.Atoi(g.DefaultQuery("page", "1"))
 	pageSize, _ := strconv.Atoi(g.DefaultQuery("pageSize", "5"))
 	// 获取用户列表
-	rsp, err := client.GetUserList(
+	rsp, err := global.UserRpc.GetUserList(
 		context.Background(),
 		&proto.PageInfo{Page: uint32(page), PageSize: uint32(pageSize)},
 	)
@@ -66,8 +48,7 @@ func HandlerLogin(g *gin.Context) {
 	}
 
 	// 调用grpc登录服务
-	client := connGrpc()
-	user, err := client.GetUserByMobile(
+	user, err := global.UserRpc.GetUserByMobile(
 		context.Background(),
 		&proto.MobileRequest{Mobile: logForm.Mobile},
 	)
@@ -78,7 +59,7 @@ func HandlerLogin(g *gin.Context) {
 		return
 	}
 
-	checked, _ := client.CheckPassword(
+	checked, _ := global.UserRpc.CheckPassword(
 		context.Background(),
 		&proto.CheckPasswordInfo{
 			Password:          logForm.Password,
@@ -130,15 +111,14 @@ func HandlerRegister(g *gin.Context) {
 	}
 
 	// 调用grpc登录服务
-	client := connGrpc()
-	_, err := client.GetUserByMobile(context.Background(), &proto.MobileRequest{Mobile: regisForm.Mobile})
+	_, err := global.UserRpc.GetUserByMobile(context.Background(), &proto.MobileRequest{Mobile: regisForm.Mobile})
 	if err == nil {
 		zap.S().Errorw("[Register] 用户已存在")
 		ResponseError(g, CodeUserExists, "用户已存在")
 		return
 	}
 
-	_, err = client.CreateUser(context.Background(), &proto.CreateUserInfo{
+	_, err = global.UserRpc.CreateUser(context.Background(), &proto.CreateUserInfo{
 		NickName: regisForm.ConfirmPwd,
 		Password: regisForm.Password,
 		Mobile:   regisForm.Mobile,
