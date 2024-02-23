@@ -64,6 +64,7 @@ require (
 require (
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.9.1
+	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/hashicorp/consul/api v1.27.0
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/spf13/viper v1.18.2

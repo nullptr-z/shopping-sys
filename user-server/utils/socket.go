@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"net"
 )
 
@@ -12,6 +11,5 @@ func GetFreePort() int {
 		return 0
 	}
 	defer listener.Close()
-	fmt.Println("使用的端口号：", listener.Addr().(*net.TCPAddr).Port)
 	return listener.Addr().(*net.TCPAddr).Port
 }

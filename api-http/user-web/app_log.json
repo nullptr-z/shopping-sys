@@ -13,3 +13,35 @@
 2024-02-22T16:31:48.495466+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
 
 2024-02-22T16:31:48.554592+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[59.524875ms]", "clientIP": "[127.0.0.1]"}
+2024-02-23T15:42:19.0462+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:42:25.829109+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:42:35.8798+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:42:37.049495+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:42:47.265126+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:42:48.59776+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:46:32.962633+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:46:39.414289+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:46:50.322272+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:47:05.426507+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:47:10.857332+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:47:37.595709+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:47:45.367066+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:48:00.564808+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:48:53.601362+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:49:20.144801+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:49:24.94145+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:49:30.822207+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:49:41.054398+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:50:52.54765+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:50:57.302472+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:51:00.085831+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:51:45.744344+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:51:51.180793+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:51:52.694597+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:52:10.537766+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:52:36.539028+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:52:49.632491+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:53:08.867728+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:54:31.776618+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T15:54:36.904188+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress:192.168.3.9:63394
+2024-02-23T17:18:37.301533+08:00	[34mINFO[0m	initialize/connect_rpc.go:62	user service rpcAddress::0

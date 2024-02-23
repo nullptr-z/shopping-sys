@@ -2,31 +2,18 @@ package utils
 
 import (
 	"fmt"
+	"user-server/global"
 
+	"github.com/gofrs/uuid"
 	"github.com/hashicorp/consul/api"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
 
-func client() *api.Client {
-	// 连接 Consul 客户端
-	consulConfig := api.DefaultConfig()
-	// Consul服务的地址
-	consulConfig.Address = fmt.Sprintf(
-		"%s:%d",
-		viper.GetString("consul.host"),
-		viper.GetInt("consul.port"),
-	)
-	client, err := api.NewClient(consulConfig)
-	if err != nil {
-		zap.S().Warnw(err.Error())
-	}
-
-	return client
-}
+var id, _ = uuid.NewV4()
+var ConsulId = fmt.Sprint(id)
 
 func RegisterRpcInConsul(host string, port int32) {
-	client := client()
 	// 添加需要健康检查的微服务信息
 	check := &api.AgentServiceCheck{
 		// 检查 gRPC 服务
@@ -38,18 +25,29 @@ func RegisterRpcInConsul(host string, port int32) {
 
 	// 设置要注册的服务的信息
 	registration := new(api.AgentServiceRegistration)
-	registration.ID = viper.GetString("name")                                // 服务ID，唯一
 	registration.Name = viper.GetString("name")                              // 服务名称
+	registration.ID = ConsulId                                               // 服务ID，唯一
 	registration.Port = int(port)                                            // 服务端口
 	registration.Tags = []string{"user", "login", "register", "web", "http"} // 可选标签
 	registration.Address = host                                              // 服务地址
 	registration.Check = check                                               // 如果不填写，默认健康的
 
 	// 注册服务到Consul
-	err := client.Agent().ServiceRegister(registration)
+	err := global.Consul.Agent().ServiceRegister(registration)
 	if err != nil {
-		zap.S().Warnw(err.Error())
+		zap.S().Warnw("服务注册失败", err.Error())
+		panic("服务注册失败")
 	}
 
-	zap.S().Infof("注册服务！")
+	zap.S().Infof("注册服务成功！")
+}
+
+func DeRegister() {
+	fmt.Println("ConsulId:", ConsulId)
+	err := global.Consul.Agent().ServiceDeregister(ConsulId)
+	if err != nil {
+		zap.S().Fatal("服务注销失败", err.Error())
+		return
+	}
+	zap.S().Info("服务注销成功！")
 }

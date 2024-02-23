@@ -4,6 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"net"
+	"os"
+	"os/signal"
+	"syscall"
 	"user-server/handler"
 	"user-server/initialize"
 	"user-server/proto"
@@ -20,6 +23,7 @@ func main() {
 	initialize.ViperConfig()
 	initialize.Logger()
 	initialize.MySql()
+	initialize.ConnConsul()
 
 	host_defualt := viper.GetString("host")
 	port_defualt := utils.GetFreePort()
@@ -43,8 +47,19 @@ func main() {
 		panic(fmt.Sprint("error:", err.Error()))
 	}
 
-	err = server.Serve(lis)
-	if err != nil {
-		panic(fmt.Sprint("Listen error of grpc service:", err.Error()))
-	}
+	go func() {
+		err = server.Serve(lis)
+		if err != nil {
+			panic(fmt.Sprint("Listen error of grpc service:", err.Error()))
+		}
+	}()
+	shutdown()
+}
+
+func shutdown() {
+	// 接受退出信号，善后工作
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGABRT, syscall.SIGALRM) // 添加SIGINT
+	<-quit
+	utils.DeRegister()
 }
