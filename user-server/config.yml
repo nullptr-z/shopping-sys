@@ -1,3 +1,18 @@
+nacos:
+  host: 127.0.0.1
+  port: 8848
+
+  NamespaceId: user
+  TimeoutMs: 5000
+  NotLoadCacheAtStart: true
+  LogDir: nacos/log
+  CacheDir: nacos/cache
+  LogLevel: debug
+
+  DataId: user-server
+  Group: dev
+####### 下面的不需要了，全部从 nacos 读取
+
 host: 192.168.3.9
 # port: 10001 动态获取
 mode: debug

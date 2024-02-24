@@ -687,3 +687,34 @@ runtime.main
 2024-02-23T22:44:33.298536+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
 
 2024-02-23T22:44:33.301615+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[3.791125ms]", "clientIP": "[127.0.0.1]"}
+2024-02-24T17:44:42.984912+08:00	[34mINFO[0m	initialize/connect_rpc.go:65	user service rpcAddress:consul://:8500/user-server?wait=14s
+2024-02-24T17:44:51.085883+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:44:51.08624+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:44:51.086704+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-24T17:44:51.218321+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[132.532916ms]", "clientIP": "[127.0.0.1]"}
+2024-02-24T17:44:58.463556+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:44:58.463864+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:44:58.464081+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-24T17:44:58.498267+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[34.751584ms]", "clientIP": "[127.0.0.1]"}
+2024-02-24T17:45:03.064492+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:45:03.064641+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:45:03.06491+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-24T17:45:03.069399+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[4.938083ms]", "clientIP": "[127.0.0.1]"}
+2024-02-24T17:48:42.556303+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:48:42.55818+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:48:42.560283+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-24T17:48:42.592206+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[36.762125ms]", "clientIP": "[127.0.0.1]"}
+2024-02-24T17:48:48.362744+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:48:48.362956+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:48:48.363273+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-24T17:48:48.36688+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[4.490583ms]", "clientIP": "[127.0.0.1]"}
+2024-02-24T17:50:53.747296+08:00	[34mINFO[0m	middleware/authorization.go:18	author:%!(EXTRA string=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:50:53.749512+08:00	[34mINFO[0m	middleware/authorization.go:26	token:%!(EXTRA string=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJRCI6MTAsIk5pY2tOYW1lIjoiemhvdXpoZW5nIiwiQXV0aG9yaXR5SWQiOjEsImV4cCI6NzIwMDAwMDAwMDAwMCwiaXNzIjoienoiLCJuYmYiOjE3MDg1MDUwNDN9.QMHBmOW-iKmGXlBiv2bcOGKuzT5NuAzJo4zkskeqb7I)
+2024-02-24T17:50:53.752138+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
+
+2024-02-24T17:50:53.786837+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[40.78375ms]", "clientIP": "[127.0.0.1]"}

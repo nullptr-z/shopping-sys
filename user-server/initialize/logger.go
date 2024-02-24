@@ -2,15 +2,15 @@ package initialize
 
 import (
 	"fmt"
+	"user-server/global"
 
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
 
 func Logger() {
-	mode := viper.Get("mode")
-	logFilePath := fmt.Sprint(viper.Get("log.log_file"))
+	mode := global.Conf.Mode
+	logFilePath := fmt.Sprint(global.Conf.Log.LogFile)
 	var config zap.Config
 	if mode == "debug" {
 		// 开发模式下的配置

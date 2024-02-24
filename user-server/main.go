@@ -7,12 +7,12 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	. "user-server/global"
 	"user-server/handler"
 	"user-server/initialize"
 	"user-server/proto"
 	"user-server/utils"
 
-	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	gprcCheck "google.golang.org/grpc/health/grpc_health_v1"
@@ -21,11 +21,12 @@ import (
 func main() {
 	// 初始化。注意顺序不能变
 	initialize.ViperConfig()
+	initialize.LoadNaocs()
 	initialize.Logger()
 	initialize.MySql()
 	initialize.ConnConsul()
 
-	host_defualt := viper.GetString("host")
+	host_defualt := Conf.Host
 	port_defualt := utils.GetFreePort()
 
 	// get ip:port from terminal； --help 会得到参数提示

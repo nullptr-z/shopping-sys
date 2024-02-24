@@ -1,0 +1,3 @@
+2024-02-24T16:26:07.160+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<nacos/log>   cacheDir:<nacos/cache>
+2024-02-24T16:29:22.201+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<nacos/log>   cacheDir:<nacos/cache>
+2024-02-24T16:29:55.581+0800	[34mINFO[0m	clients/client_factory.go:47	logDir:<nacos/log>   cacheDir:<nacos/cache>

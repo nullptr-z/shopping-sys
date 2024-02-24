@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 	"user-server/global"
+	. "user-server/global"
 
-	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -27,12 +27,12 @@ func MySql() {
 	)
 
 	dsn := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		viper.GetString("mysql.user"),
-		viper.GetString("mysql.password"),
-		viper.GetString("mysql.host"),
-		viper.GetString("mysql.port"),
-		viper.GetString("mysql.dbname"),
+		"%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		Conf.Mysql.User,
+		Conf.Mysql.Password,
+		Conf.Mysql.Host,
+		Conf.Mysql.Port,
+		Conf.Mysql.Dbname,
 	)
 	fmt.Println("dsn:", dsn)
 

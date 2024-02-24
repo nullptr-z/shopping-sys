@@ -6,7 +6,6 @@ import (
 
 	"github.com/gofrs/uuid"
 	"github.com/hashicorp/consul/api"
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 )
 
@@ -25,7 +24,7 @@ func RegisterRpcInConsul(host string, port int32) {
 
 	// 设置要注册的服务的信息
 	registration := new(api.AgentServiceRegistration)
-	registration.Name = viper.GetString("name")                              // 服务名称
+	registration.Name = global.Conf.Name                                     // 服务名称
 	registration.ID = ConsulId                                               // 服务ID，唯一
 	registration.Port = int(port)                                            // 服务端口
 	registration.Tags = []string{"user", "login", "register", "web", "http"} // 可选标签

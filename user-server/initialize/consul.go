@@ -5,7 +5,6 @@ import (
 	"user-server/global"
 
 	"github.com/hashicorp/consul/api"
-	"github.com/spf13/viper"
 )
 
 func ConnConsul() {
@@ -14,8 +13,8 @@ func ConnConsul() {
 	// Consul服务的地址
 	consulConfig.Address = fmt.Sprintf(
 		"%s:%d",
-		viper.GetString("consul.host"),
-		viper.GetInt("consul.port"),
+		global.Conf.Consul.Host,
+		global.Conf.Consul.Port,
 	)
 	var err error
 	global.Consul, err = api.NewClient(consulConfig)

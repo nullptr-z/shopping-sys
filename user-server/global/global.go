@@ -8,3 +8,5 @@ import (
 var DB *gorm.DB
 
 var Consul *api.Client
+
+var Conf *Configure
