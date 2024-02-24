@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	_ "github.com/mbobakov/grpc-consul-resolver"
 
@@ -26,13 +27,15 @@ func main() {
 	page := proto.PageInfo{Page: 1, PageSize: 4}
 	fmt.Println("page:", &page)
 
-	userRpc := proto.NewUserClient(conn)
-	uerList, err := userRpc.GetUserList(
-		context.Background(),
-		&page,
-	)
-	for _, u := range uerList.Data {
-		fmt.Println("user info:", u.Id, u.Mobile, u.NickName)
+	for {
+		userRpc := proto.NewUserClient(conn)
+		uerList, _ := userRpc.GetUserList(
+			context.Background(),
+			&page,
+		)
+		for _, u := range uerList.Data {
+			fmt.Println("user info:", u.Id, u.Mobile, u.NickName)
+		}
+		time.Sleep(time.Second * 2)
 	}
-
 }

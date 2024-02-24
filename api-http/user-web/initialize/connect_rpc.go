@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/consul/api"
+	_ "github.com/mbobakov/grpc-consul-resolver"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -40,6 +41,7 @@ func ConnConsul() (*api.Client, error) {
 		zap.S().Errorw("[ConnConsul] Failed")
 		return nil, err
 	}
+	zap.S().Info("Connect Consul success")
 
 	return consul, nil
 }
@@ -50,17 +52,22 @@ func ConnConsul() (*api.Client, error) {
 		2.连接池
 */
 func ConnUserRpc() error {
-	// 链接 grpc 服务
-	// ip, port := viper.Get("rpc.ip"), viper.Get("rpc.port")
-	consul, err := ConnConsul()
-	if err != nil {
-		zap.S().Fatal("ConnRpc failed")
-		return err
-	}
-	host, port := filterServer(consul, viper.GetString("userServer.name"))
-	rpcAddress := fmt.Sprintf("%s:%d", host, port)
+	// 手动分配
+	// consul, err := ConnConsul()
+	// host, port := filterServer(consul, viper.GetString("userServer.name"))
+	// 负载均衡，自动分配
+	rpcAddress := fmt.Sprintf(
+		"consul://%s:%d/%s?wait=14s",
+		viper.GetString("consul.consul"),
+		viper.GetInt("consul.port"),
+		viper.GetString("userServer.name"),
+	)
 	zap.S().Info("user service rpcAddress:", rpcAddress)
-	conn, err := grpc.Dial(rpcAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.Dial(
+		rpcAddress,
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy": "round_robin"}`),
+	)
 	if err != nil {
 		zap.S().Fatal("[HandlerGetList] connect rpc server of user failed", err)
 		return err
