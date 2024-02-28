@@ -718,3 +718,4 @@ runtime.main
 2024-02-24T17:50:53.752138+08:00	[34mINFO[0m	middleware/authorization.go:40	解析token, User ID: 10, Username: zhouzheng
 
 2024-02-24T17:50:53.786837+08:00	[34mINFO[0m	initialize/logger.go:81	requestDetails	{"method": "GET", "uri": "/u/v1/user/list?page=1&pageSize=10", "status": 200, "latency": "[40.78375ms]", "clientIP": "[127.0.0.1]"}
+2024-02-25T22:11:16.581715+08:00	[34mINFO[0m	initialize/connect_rpc.go:65	user service rpcAddress:consul://:8500/user-server?wait=14s
