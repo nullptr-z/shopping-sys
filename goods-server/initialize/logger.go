@@ -30,7 +30,7 @@ func Logger() {
 	// 创建Logger实例
 	logger, err := config.Build()
 	if err != nil {
-		fmt.Println("Failed initialized Init Logger", err.Error())
+		fmt.Println("Failed initialized Init Logger:", err.Error())
 		panic("Logger")
 	}
 	// 创建SugaredLogger

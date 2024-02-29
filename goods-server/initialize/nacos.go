@@ -47,6 +47,7 @@ func LoadNaocs() {
 		DataId: viper.GetString("nacos.DataId"),
 		Group:  viper.GetString("nacos.Group"),
 	})
+
 	if err != nil {
 		panic(fmt.Sprint("GetConfig error:", err.Error()))
 	}
@@ -71,7 +72,7 @@ func bindingOnConfigure(content string) {
 
 	v.SetConfigType("yaml")
 	v.ReadConfig(bytes.NewBuffer([]byte(content)))
-	err := viper.Unmarshal(&global.Conf)
+	err := v.Unmarshal(&global.Conf)
 	if err != nil {
 		panic(fmt.Sprint("nacos config binding failed on struct Configure: ", err.Error()))
 	}

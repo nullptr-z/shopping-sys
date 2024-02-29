@@ -42,7 +42,7 @@ func main() {
 	gprcCheck.RegisterHealthServer(server, health.NewServer())
 	utils.RegisterRpcInConsul(*host, int32(*port))
 	// 注册 grpc 调用
-	proto.RegisterUserServer(server, &handler.UserService{})
+	proto.RegisterGoodsServer(server, &handler.GoodsService{})
 	lis, err := net.Listen("tcp", address)
 	if err != nil {
 		panic(fmt.Sprint("error:", err.Error()))

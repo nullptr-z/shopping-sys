@@ -26,6 +26,7 @@ type Configure struct {
 	Host string `mapstructure:"host"`
 	Name string `mapstructure:"name"`
 	Mode string
+	Tags []string
 
 	Mysql  MySqlConf
 	Log    LoggerConf

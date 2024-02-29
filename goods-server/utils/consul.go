@@ -24,12 +24,13 @@ func RegisterRpcInConsul(host string, port int32) {
 
 	// 设置要注册的服务的信息
 	registration := new(api.AgentServiceRegistration)
-	registration.Name = global.Conf.Name                                     // 服务名称
-	registration.ID = ConsulId                                               // 服务ID，唯一
-	registration.Port = int(port)                                            // 服务端口
-	registration.Tags = []string{"user", "login", "register", "web", "http"} // 可选标签
-	registration.Address = host                                              // 服务地址
-	registration.Check = check                                               // 如果不填写，默认健康的
+	registration.Name = global.Conf.Name // 服务名称
+	registration.ID = ConsulId           // 服务ID，唯一
+	registration.Port = int(port)        // 服务端口
+	registration.Tags = global.Conf.Tags // 可选标签
+	registration.Address = host          // 服务地址
+	registration.Check = check           // 如果不填写，默认健康的
+	fmt.Println("--------------global.Conf.Tags:", global.Conf.Tags)
 
 	// 注册服务到Consul
 	err := global.Consul.Agent().ServiceRegister(registration)
