@@ -58,8 +58,8 @@ func ConnUserRpc() error {
 	// 负载均衡，自动分配
 	rpcAddress := fmt.Sprintf(
 		"consul://%s:%d/%s?wait=14s",
-		viper.GetString("consul.consul"),
-		viper.GetInt("consul.port"),
+		global.Conf.Consul.Host,
+		global.Conf.Consul.Port,
 		viper.GetString("userServer.name"),
 	)
 	zap.S().Info("user service rpcAddress:", rpcAddress)

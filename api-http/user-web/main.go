@@ -19,6 +19,7 @@ func main() {
 		fmt.Println("Failed initialized Init ViperConfig", err)
 		return
 	}
+	initialize.LoadNaocs()
 	// 2. 初始化日志
 	if err := initialize.Logger(); err != nil {
 		fmt.Println("Failed initialized Init Logger", err)

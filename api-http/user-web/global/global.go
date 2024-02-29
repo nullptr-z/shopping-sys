@@ -14,6 +14,8 @@ const (
 	VISITOR
 )
 
+var Conf *Configure
+
 // 全局上下文可访问字段, 后续上文件中可以 g.Get(key) 可以直接获取
 // middle.authorization中设置的
 var (

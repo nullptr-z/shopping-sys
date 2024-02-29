@@ -2,6 +2,21 @@ mode: debug
 port: 11001
 host: 0.0.0.0
 
+nacos:
+  host: 192.168.1.107
+  port: 8848
+
+  TimeoutMs: 5000
+  NotLoadCacheAtStart: true
+  LogDir: nacos/log
+  CacheDir: nacos/cache
+  LogLevel: debug
+
+  NamespaceId: public
+  DataId: consul
+  Group: dev
+  # ----------------------------
+
 log:
   level: debug
   log_file: user-web/app_log.json
@@ -21,5 +36,5 @@ userServer:
   # port: 10001
 
 consul:
-  host: 192.168.1.107
+  host: 192.168.1.101
   port: 8500
