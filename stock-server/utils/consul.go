@@ -30,7 +30,6 @@ func RegisterRpcInConsul(host string, port int32) {
 	registration.Tags = global.Conf.Tags // 可选标签
 	registration.Address = host          // 服务地址
 	registration.Check = check           // 如果不填写，默认健康的
-	fmt.Println("--------------global.Conf.Tags:", global.Conf.Tags)
 
 	// 注册服务到Consul
 	err := global.Consul.Agent().ServiceRegister(registration)

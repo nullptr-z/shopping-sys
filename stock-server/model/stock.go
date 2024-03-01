@@ -3,7 +3,9 @@ package model
 type Stock struct {
 	BaseModel
 
-	Goods   int32 `gorm:"type:int;index"`
+	// 商品编号
+	Goods int32 `gorm:"type:int;index"`
+	// 库存数量
 	Stocks  int32 `gorm:"type:int"`
 	Version int32 `gorm:"type:int"` // 分布式锁-乐观锁
 }
