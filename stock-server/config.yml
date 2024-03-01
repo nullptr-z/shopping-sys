@@ -1,0 +1,13 @@
+nacos:
+  host: 192.168.1.107
+  port: 8848
+
+  NamespaceId: stock
+  TimeoutMs: 5000
+  NotLoadCacheAtStart: true
+  LogDir: nacos/log
+  CacheDir: nacos/cache
+  LogLevel: debug
+
+  DataId: stock-server
+  Group: dev
