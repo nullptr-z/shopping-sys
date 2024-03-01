@@ -47,11 +47,9 @@ func LoadNaocs() {
 		DataId: viper.GetString("nacos.DataId"),
 		Group:  viper.GetString("nacos.Group"),
 	})
-
 	if err != nil {
 		panic(fmt.Sprint("GetConfig error:", err.Error()))
 	}
-
 	// 设置配置类型（"json", "yaml", "toml"等）
 	bindingOnConfigure(content)
 
@@ -77,4 +75,9 @@ func bindingOnConfigure(content string) {
 		panic(fmt.Sprint("nacos config binding failed on struct Configure: ", err.Error()))
 	}
 	fmt.Println("Configure conf:", global.Conf)
+}
+
+func LoadConsulConf() {
+	global.Conf.Consul.Host = ""
+	global.Conf.Consul.Port = 0
 }
