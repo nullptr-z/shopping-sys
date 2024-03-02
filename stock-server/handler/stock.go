@@ -2,9 +2,11 @@ package handler
 
 import (
 	"context"
+	"fmt"
 	"stock-server/global"
 	"stock-server/model"
 	. "stock-server/proto"
+	"time"
 
 	"github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc/codes"
@@ -17,19 +19,25 @@ type StockService struct {
 }
 
 // set up stock
-
 func (*StockService) SetStock(ctx context.Context, req *GoodsStockInfo) (*empty.Empty, error) {
 	var s model.Stock
-	global.DB.First(&s, req.GoodsId)
-	s.Goods = req.GoodsId
+	global.DB.Where(&model.Stock{Goods: req.GoodsId}).First(&s)
+	// 如果不存在直接添加这个商品
+	if s.Goods == 0 {
+		s.Goods = req.GoodsId
+		s.CratedAt = time.Now()
+		s.UpdatedAt = time.Now()
+	}
 	s.Stocks = req.Num
+	fmt.Println("s:", s)
 	global.DB.Save(&s)
 
 	return &empty.Empty{}, nil
 }
+
 func (*StockService) InvDetail(ctx context.Context, req *GoodsStockInfo) (*GoodsStockInfo, error) {
 	var s model.Stock
-	ret := global.DB.First(&s, req.GoodsId)
+	ret := global.DB.Where(&model.Stock{Goods: req.GoodsId}).First(&s)
 	if ret.RowsAffected == 0 {
 		return nil, status.Errorf(codes.InvalidArgument, "没有找到库存信息")
 	}
@@ -51,7 +59,7 @@ func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, err
 	var s model.Stock
 	tx := global.DB.Begin()
 	for _, goodsInfo := range req.GoodsInfo {
-		ret := global.DB.First(&s, goodsInfo.GoodsId)
+		ret := global.DB.Where(&model.Stock{Goods: goodsInfo.GoodsId}).First(&s)
 		if ret.RowsAffected == 0 {
 			tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
 			return nil, status.Errorf(codes.InvalidArgument, "没有找到库存信息")
