@@ -24,6 +24,8 @@ func main() {
 	initialize.LoadNaocs()
 	initialize.Logger()
 	initialize.MySql()
+	initialize.ConnRedis()
+	initialize.ConnRedisSync()
 	initialize.ConnConsul()
 
 	host_defualt := Conf.Host

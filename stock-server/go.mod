@@ -11,6 +11,8 @@ require (
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.18 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
+	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/fatih/color v1.15.0 // indirect
 	github.com/go-errors/errors v1.0.1 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
@@ -59,6 +61,8 @@ require (
 
 require (
 	github.com/fsnotify/fsnotify v1.7.0
+	github.com/go-redis/redis/v8 v8.11.5
+	github.com/go-redsync/redsync/v4 v4.12.1
 	github.com/gofrs/uuid v4.4.0+incompatible
 	github.com/hashicorp/consul/api v1.27.0
 	github.com/jinzhu/inflection v1.0.0 // indirect

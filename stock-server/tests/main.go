@@ -56,7 +56,7 @@ func main() {
 	// 扣减库存
 	// TestSellStock(421, 10)
 	var wg sync.WaitGroup
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 20; i++ {
 		wg.Add(1)
 		go TestSellStock(421, 1, &wg)
 	}

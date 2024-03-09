@@ -21,6 +21,11 @@ type ConsulConf struct {
 	Port int    `mapstructure:"port"`
 }
 
+type Redis struct {
+	Host string `mapstructure:"host"`
+	Port int    `mapstructure:"port"`
+}
+
 type Configure struct {
 	// 服务本身信息
 	Host string `mapstructure:"host"`
@@ -31,4 +36,5 @@ type Configure struct {
 	Mysql  MySqlConf
 	Log    LoggerConf
 	Consul ConsulConf
+	Redis
 }

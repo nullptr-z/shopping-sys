@@ -51,14 +51,48 @@ func (*StockService) InvDetail(ctx context.Context, req *GoodsStockInfo) (*Goods
 	return info, nil
 }
 
-// var mx sync.Mutex
-
 /*
 扣减库存
  1. 需要满足本地事务，三件商品要能同时扣减成功，其中一个失败全部撤回；数据一致性
  2. 数据库的一个应用场景：事务；数据一致性
 */
 func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, error) {
+	var s model.Stock
+	tx := global.DB.Begin()
+	for _, goodsInfo := range req.GoodsInfo {
+		mutexname := fmt.Sprint("stockSell.", goodsInfo.GoodsId)
+		mutex := global.Rdsync.NewMutex(mutexname)
+		if err := mutex.Lock(); err != nil {
+			zap.S().Error("Redis lock failed", zap.Error(err))
+			return nil, status.Errorf(codes.Internal, "Redis lock failed")
+		}
+		ret := global.DB.Where(&model.Stock{Goods: goodsInfo.GoodsId}).First(&s)
+		if ret.RowsAffected == 0 {
+			tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
+			return nil, status.Errorf(codes.InvalidArgument, "没有找到库存信息")
+		}
+		// 库存是否充足
+		if s.Stocks < goodsInfo.Num {
+			tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
+			return nil, status.Errorf(codes.InvalidArgument, "库存不足")
+		}
+		// 所有条件满足，扣除库存
+		// 并发是，可能出现数据不一致问题，其他地方扣减了库存；分布式锁
+		s.Stocks -= goodsInfo.Num
+		tx.Save(&s)
+		if ok, err := mutex.Unlock(); !ok || err != nil {
+			zap.S().Error("Redis unlock failed", zap.Error(err))
+			return nil, status.Errorf(codes.Internal, "Redis unlock failed")
+		}
+	}
+	tx.Commit() // 提交事务
+	return &emptypb.Empty{}, nil
+}
+
+// 扣减库存，使用mysql做分布式锁
+// 乐观锁，悲观锁
+// var mx sync.Mutex // go 的互斥锁，无法在分布式环境下使用
+func (*StockService) Sell_mysql_lock(ctx context.Context, req *SellInfo) (*empty.Empty, error) {
 	var s model.Stock
 	tx := global.DB.Begin()
 	// 无法在分布式环境下使用，必须要在事务提交之后释放
@@ -82,7 +116,7 @@ func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, err
 			// 并发是，可能出现数据不一致问题，其他地方扣减了库存；分布式锁
 			s.Stocks -= goodsInfo.Num
 			// 乐观锁
-			if result := tx.Model(&model.Stock{}).Where("goods = ? and version = ?", goodsInfo.GoodsId, s.Version).Updates(model.Stock{
+			if result := tx.Model(&model.Stock{}).Select("stocks", "version").Where("goods = ? and version = ?", goodsInfo.GoodsId, s.Version).Updates(model.Stock{
 				Stocks:  s.Stocks,
 				Version: s.Version + 1,
 			}); result.RowsAffected == 0 {
