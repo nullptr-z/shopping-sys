@@ -8,10 +8,13 @@ run-goods:
 	cd goods-server && go run .
 
 run-stock:
-	cd stock-server && go run .
+	cd stock-server && go run . -port 10003
 
 run-user-web:
 	cd api-http && make watch-user
 
 watch-user-web:
 	cd api-http && make run-user
+
+watch-stock:
+	@watchexec --restart --ignore docs --exts go make run-stock
