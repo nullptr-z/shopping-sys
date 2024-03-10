@@ -55,6 +55,7 @@ func (*StockService) InvDetail(ctx context.Context, req *GoodsStockInfo) (*Goods
 扣减库存
  1. 需要满足本地事务，三件商品要能同时扣减成功，其中一个失败全部撤回；数据一致性
  2. 数据库的一个应用场景：事务；数据一致性
+    红锁，续命，只允许自己释放锁
 */
 func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, error) {
 	var s model.Stock
@@ -66,6 +67,7 @@ func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, err
 			zap.S().Error("Redis lock failed", zap.Error(err))
 			return nil, status.Errorf(codes.Internal, "Redis lock failed")
 		}
+		// time.Sleep(10 * time.Second)
 		ret := global.DB.Where(&model.Stock{Goods: goodsInfo.GoodsId}).First(&s)
 		if ret.RowsAffected == 0 {
 			tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
