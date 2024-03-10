@@ -1,6 +1,9 @@
 package model
 
-import "time"
+import (
+	"order-server/proto"
+	"time"
+)
 
 type ShoppingCart struct {
 	BaseModel
@@ -52,4 +55,32 @@ type OrderGoods struct {
 
 func (OrderGoods) TableName() string {
 	return "ordergoods"
+}
+
+func (ord *OrderInfo) IntoOrderInfoResponse() *proto.OrderInfoResponse {
+	var resp = proto.OrderInfoResponse{
+		Id:      ord.ID,
+		UserId:  ord.User,
+		OrderSn: ord.OrderSn,
+		Status:  ord.Status,
+		Post:    ord.Post,
+		Address: ord.Address,
+		Total:   ord.OrderMount,
+		Name:    ord.SignerName,
+		Mobile:  ord.SingerMobile,
+	}
+	return &resp
+}
+
+func (goods *OrderGoods) IntoOrderItemResponse() *proto.OrderItemResponse {
+	var resp = proto.OrderItemResponse{
+		Id:         goods.ID,
+		OrderId:    goods.Order,
+		GoodsId:    goods.Goods,
+		GoodsName:  goods.GoodsName,
+		GoodsImage: goods.GoodsImage,
+		GoodsPrice: goods.GoodsPrice,
+		Nums:       goods.Nums,
+	}
+	return &resp
 }

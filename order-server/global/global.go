@@ -1,18 +1,26 @@
 package global
 
 import (
+	"order-server/proto"
+
 	"github.com/go-redis/redis/v8"
 	"github.com/go-redsync/redsync/v4"
 	"github.com/hashicorp/consul/api"
 	"gorm.io/gorm"
 )
 
-var DB *gorm.DB
+var (
+	DB *gorm.DB
 
-var Consul *api.Client
+	Consul *api.Client
 
-var Conf *Configure
+	Conf *Configure
 
-var Rds *redis.Client
+	Rds *redis.Client
 
-var Rdsync *redsync.Redsync
+	Rdsync *redsync.Redsync
+
+	GoodsSvc proto.GoodsClient
+
+	StockSvc proto.StockClient
+)

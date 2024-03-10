@@ -87,7 +87,7 @@ message OrderInfoDetailResponse {
 message OrderFilterRequest {
     int32 userId = 1;
     int32 pages = 2;
-    int32 pagePerNums = 3;
+    int32 pageSize = 3;
 }
 
 message OrderListResponse {

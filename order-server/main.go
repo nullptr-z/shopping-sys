@@ -26,6 +26,7 @@ func main() {
 	initialize.MySql()
 	initialize.ConnRedis()
 	initialize.ConnRedisSync()
+	initialize.ConnRpcAll()
 	initialize.ConnConsul()
 
 	host_defualt := Conf.Host

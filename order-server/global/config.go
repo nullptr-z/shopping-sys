@@ -26,6 +26,19 @@ type Redis struct {
 	Port int    `mapstructure:"port"`
 }
 
+// type GoodsService struct {
+// 	Name string `mapstructure:"name"`
+// }
+
+// type StockService struct {
+// 	Name string `mapstructure:"name"`
+// }
+
+type ServiceRpcConf struct {
+	Goods string `mapstructure:"goods"`
+	Stock string `mapstructure:"stock"`
+}
+
 type Configure struct {
 	// 服务本身信息
 	Host string `mapstructure:"host"`
@@ -33,8 +46,11 @@ type Configure struct {
 	Mode string
 	Tags []string
 
-	Mysql  MySqlConf
-	Log    LoggerConf
-	Consul ConsulConf
+	Mysql   MySqlConf
+	Log     LoggerConf
+	Consul  ConsulConf
+	RpcName ServiceRpcConf
+	// Goods  GoodsService
+	// Stock  StockService
 	Redis
 }

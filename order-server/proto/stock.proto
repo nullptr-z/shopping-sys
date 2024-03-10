@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option go_package = ".;proto";
+
+
+service Stock {
+    rpc SetStock(GoodsStockInfo) returns (google.protobuf.Empty); // 设置库存
+    rpc InvDetail(GoodsStockInfo) returns(GoodsStockInfo);  // 获取库存信息
+    // 我们一般买东西的时候喜欢从购物车中去买，事务
+    rpc Sell(SellInfo) returns(google.protobuf.Empty); // 库存扣减
+    rpc Reback(SellInfo) returns(google.protobuf.Empty); // 库存归还
+}
+
+message GoodsStockInfo{
+  int32 goodsId=1;
+  int32 num=2;
+}
+
+message SellInfo{
+  repeated GoodsStockInfo goodsInfo=1;
+}
+
