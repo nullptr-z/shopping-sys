@@ -28,7 +28,7 @@ func (*OrderService) CartItemList(ctx context.Context, req *UserInfo) (*CartItem
 
 	for _, cart := range shopCarts {
 		resp.Data = append(resp.Data, &ShopCartInfoResponse{
-			Id:      cart.ID,
+			Id:      int32(cart.ID),
 			UserId:  cart.User,
 			GoodsId: cart.Goods,
 			Nums:    cart.Nums,
@@ -45,9 +45,7 @@ func (*OrderService) CartItemList(ctx context.Context, req *UserInfo) (*CartItem
 func (*OrderService) CreateCartItem(ctx context.Context, req *CartItemRequest) (*ShopCartInfoResponse, error) {
 	var shopCart model.ShoppingCart
 	serachRet := DB.Where(model.ShoppingCart{User: req.UserId, Goods: req.GoodsId}).First(&shopCart)
-	if condition := serachRet.Error; condition != nil {
-		return nil, condition
-	}
+
 	if serachRet.RowsAffected == 1 {
 		shopCart.Nums += req.Nums
 	} else {
@@ -60,7 +58,7 @@ func (*OrderService) CreateCartItem(ctx context.Context, req *CartItemRequest) (
 	if creteRet.Error != nil {
 		return nil, creteRet.Error
 	}
-	return &ShopCartInfoResponse{Id: shopCart.ID}, nil
+	return &ShopCartInfoResponse{Id: int32(shopCart.ID)}, nil
 }
 
 // UpdateCartItem implements proto.OrderServer.

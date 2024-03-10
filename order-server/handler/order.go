@@ -11,6 +11,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"gorm.io/gorm"
 )
 
 // CreateOrder implements proto.OrderServer.
@@ -92,7 +93,7 @@ func (*OrderService) CreateOrder(ctx context.Context, req *OrderRequest) (*Order
 	}
 
 	for _, o := range orderGoods {
-		o.Order = order.ID
+		o.Order = int32(order.ID)
 	}
 	//  订单商品，批量每次插入100条
 	if result := DB.CreateInBatches(orderGoods, 100); result.Error != nil {
@@ -105,7 +106,7 @@ func (*OrderService) CreateOrder(ctx context.Context, req *OrderRequest) (*Order
 	// 从购物车，删除已购买的商品
 	DB.Where(&model.ShoppingCart{User: req.UserId, Checked: true}).Delete(&model.ShoppingCart{})
 
-	return &OrderInfoResponse{Id: order.ID, OrderSn: order.OrderSn, Total: order.OrderMount}, nil
+	return &OrderInfoResponse{Id: int32(order.ID), OrderSn: order.OrderSn, Total: order.OrderMount}, nil
 }
 
 // OrderList implements proto.OrderServer.
@@ -131,8 +132,8 @@ func (*OrderService) OrderDetail(ctx context.Context, req *OrderRequest) (*Order
 
 	// 需要检查用户ID，防止爬虫查询其他用户的订单
 	// 管理平台直接不传用户ID
-	BaseModel := model.BaseModel{ID: req.Id}
-	ret := DB.Where(&model.OrderInfo{BaseModel: BaseModel, User: req.UserId}).First(&orderInfo)
+	BaseModel := gorm.Model{ID: uint(req.Id)}
+	ret := DB.Where(&model.OrderInfo{User: req.UserId, Model: BaseModel}).First(&orderInfo)
 	if ret.Error != nil {
 		return nil, status.Errorf(codes.NotFound, "订单不存在")
 	}
@@ -150,5 +151,11 @@ func (*OrderService) OrderDetail(ctx context.Context, req *OrderRequest) (*Order
 
 // UpdateOrderStatus implements proto.OrderServer.
 func (*OrderService) UpdateOrderStatus(ctx context.Context, req *OrderStatus) (*emptypb.Empty, error) {
-	panic("unimplemented")
+	// 支付时order_sn会传到支付宝，成功以后支付宝会回传order_sn
+	err := DB.Model(&model.OrderInfo{}).Where("order_sn = ?", req.OrderSn).Update("status", req.Status)
+	if err != nil {
+		return nil, status.Errorf(codes.NotFound, "订单不存在")
+	}
+
+	return &emptypb.Empty{}, nil
 }

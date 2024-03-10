@@ -3,10 +3,13 @@ package model
 import (
 	"order-server/proto"
 	"time"
+
+	"gorm.io/gorm"
 )
 
 type ShoppingCart struct {
-	BaseModel
+	// BaseModel
+	gorm.Model
 	User    int32 `gorm:"type:int;index"` //在购物车列表中我们需要查询当前用户的购物车记录
 	Goods   int32 `gorm:"type:int;index"` //加索引：我们需要查询时候， 1. 会影响插入性能 2. 会占用磁盘
 	Nums    int32 `gorm:"type:int"`
@@ -18,7 +21,8 @@ func (ShoppingCart) TableName() string {
 }
 
 type OrderInfo struct {
-	BaseModel
+	// BaseModel
+	gorm.Model
 
 	User    int32  `gorm:"type:int;index"`
 	OrderSn string `gorm:"type:varchar(30);index"` //订单号，我们平台自己生成的订单号
@@ -41,7 +45,8 @@ func (OrderInfo) TableName() string {
 }
 
 type OrderGoods struct {
-	BaseModel
+	// BaseModel
+	gorm.Model
 
 	Order int32 `gorm:"type:int;index"`
 	Goods int32 `gorm:"type:int;index"`
@@ -59,7 +64,7 @@ func (OrderGoods) TableName() string {
 
 func (ord *OrderInfo) IntoOrderInfoResponse() *proto.OrderInfoResponse {
 	var resp = proto.OrderInfoResponse{
-		Id:      ord.ID,
+		Id:      int32(ord.ID),
 		UserId:  ord.User,
 		OrderSn: ord.OrderSn,
 		Status:  ord.Status,
@@ -74,7 +79,7 @@ func (ord *OrderInfo) IntoOrderInfoResponse() *proto.OrderInfoResponse {
 
 func (goods *OrderGoods) IntoOrderItemResponse() *proto.OrderItemResponse {
 	var resp = proto.OrderItemResponse{
-		Id:         goods.ID,
+		Id:         int32(goods.ID),
 		OrderId:    goods.Order,
 		GoodsId:    goods.Goods,
 		GoodsName:  goods.GoodsName,

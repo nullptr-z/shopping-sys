@@ -32,8 +32,8 @@ func (g GormSlice) Value() (driver.Value, error) {
 
 type BaseModel struct {
 	ID        int32          `grom:"primaryKey;type:int"`
-	CratedAt  time.Time      `gorm:"column:create_time"`
-	UpdatedAt time.Time      `gorm:"column:update_time"`
-	DeleteAt  gorm.DeletedAt `gorm:"column:delete_time"`
+	CratedAt  time.Time      `gorm:"column:create_time;default:CURRENT_TIMESTAMP"`
+	UpdatedAt time.Time      `gorm:"column:update_time;default:CURRENT_TIMESTAMP"`
+	DeleteAt  gorm.DeletedAt `gorm:"column:delete_time;default:CURRENT_TIMESTAMP"`
 	IsDelete  bool
 }
