@@ -44,9 +44,9 @@ func TestCreateCartList(udi int32) {
 	}
 }
 
-func TestUpdateCartItem() {
+func TestUpdateCartItem(id int32) {
 	res, err := client.UpdateCartItem(context.Background(), &proto.CartItemRequest{
-		Id:      4,
+		Id:      id,
 		Checked: true, // 勾选购物车的物品
 	})
 	if err != nil {
@@ -71,13 +71,40 @@ func TestCreateOrder() {
 	fmt.Println("res: ", res)
 }
 
+func TestOrderDetail(orderId int32) {
+	res, err := client.OrderDetail(context.Background(), &proto.OrderRequest{Id: orderId})
+	if err != nil {
+		fmt.Println(" error:", err)
+		return
+	}
+	for _, g := range res.Goods {
+		fmt.Println("g:", g)
+	}
+}
+
+func TestOrderList() {
+	res, err := client.OrderList(context.Background(), &proto.OrderFilterRequest{
+		UserId: 10,
+	})
+	if err != nil {
+		fmt.Println(" error:", err)
+		return
+	}
+	for _, g := range res.Data {
+		fmt.Println("g:", g)
+	}
+}
+
 func main() {
 	// 购物车Tests
-	TestCreateCartItem(10, 422, 5)
-	TestCreateCartItem(10, 421, 5)
-	TestUpdateCartItem()
-	TestCreateCartList(10)
+	// TestCreateCartItem(10, 422, 5)
+	// TestCreateCartItem(10, 421, 5)
+	// TestUpdateCartItem(6)
+	// TestUpdateCartItem(7)
+	// TestCreateCartList(10)
 
 	// 订单Tests
-	TestCreateOrder()
+	// TestCreateOrder()
+	// TestOrderDetail(30)
+	TestOrderList()
 }

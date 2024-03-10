@@ -120,12 +120,19 @@ func (*OrderService) OrderList(ctx context.Context, req *OrderFilterRequest) (*O
 	var orderList []model.OrderInfo
 	var total int64
 
-	DB.Where(model.OrderInfo{User: req.UserId}).Count(&total)
-	DB.Scopes(utils.Paginate(int(req.Pages), int(req.PageSize))).Find(&orderList)
+	ret := DB.Model(&model.OrderInfo{}).Where(&model.OrderInfo{User: req.UserId}).Count(&total)
+	if ret.Error != nil {
+		return nil, status.Errorf(codes.Internal, "获取订单用户失败", ret.Error.Error())
+	}
+	ret = DB.Scopes(utils.Paginate(int(req.Pages), int(req.PageSize))).Find(&orderList)
+	if ret.Error != nil {
+		return nil, status.Errorf(codes.Internal, "获取订单列表失败", ret.Error.Error())
+	}
 
 	var resp OrderListResponse
 	resp.Total = int32(total)
 	for _, order := range orderList {
+		fmt.Println("order:", order)
 		resp.Data = append(resp.Data, order.IntoOrderInfoResponse())
 	}
 
@@ -144,12 +151,12 @@ func (*OrderService) OrderDetail(ctx context.Context, req *OrderRequest) (*Order
 		return nil, status.Errorf(codes.NotFound, "订单不存在")
 	}
 	var orderGoods []model.OrderGoods
-	DB.Where("order_id = ?", orderInfo.ID).Find(&orderGoods)
+	DB.Where(&model.OrderGoods{Order: int32(orderInfo.ID)}).Find(&orderGoods)
 	var goodsList []*OrderItemResponse
 	for _, goods := range orderGoods {
-		goodsList = append(goodsList, goods.IntoOrderItemResponse())
-		// var orderItem IntoOrderItemResponse = &goods
-		// goodsList = append(goodsList, orderItem.IntoOrderItemResponse())
+		// goodsList = append(goodsList, goods.IntoOrderItemResponse())
+		var orderItem IntoOrderItemResponse = &goods
+		goodsList = append(goodsList, orderItem.IntoOrderItemResponse())
 	}
 
 	return &OrderInfoDetailResponse{OrderInfo: orderInfo.IntoOrderInfoResponse(), Goods: goodsList}, nil
