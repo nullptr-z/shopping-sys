@@ -65,7 +65,7 @@ func (*OrderService) CreateCartItem(ctx context.Context, req *CartItemRequest) (
 func (*OrderService) UpdateCartItem(ctx context.Context, req *CartItemRequest) (*emptypb.Empty, error) {
 	var shopCart model.ShoppingCart
 	serachRet := DB.First(&shopCart, req.Id)
-	if condition := serachRet.Error; condition != nil {
+	if serachRet.Error != nil {
 		return nil, status.Errorf(codes.NotFound, "购物车不存在这个商品")
 	}
 	if req.Nums > 0 {

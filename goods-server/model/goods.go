@@ -52,11 +52,12 @@ type Goods struct {
 	OnSale   bool `gorm:"default:false;not null"`
 	ShipFree bool `gorm:"default:false;not null"`
 	IsNew    bool `gorm:"default:false;not null"`
-	IsHost   bool `gorm:"default:false;not null"`
+	IsHot    bool `gorm:"default:false;not null"`
 
 	Name            string    `gorm:"type:varchar(50);not null"`
 	GoodsSn         string    `gorm:"type:varchar(50);not null"`
 	ClickNum        int32     `gorm:"type:int;default:0;not null"`
+	SoldNum         int32     `gorm:"type:int;default:0;not null"`
 	FavNum          int32     `gorm:"type:int;default:0;not null"`
 	MarketPrice     float32   `gorm:"not null"`
 	ShopPrice       float32   `gorm:"not null"`

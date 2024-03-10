@@ -28,29 +28,28 @@ func (*OrderService) CreateOrder(ctx context.Context, req *OrderRequest) (*Order
 	// 查询购物车列表，获取用户选中的商品
 	result := DB.Where(&model.ShoppingCart{User: req.UserId, Checked: true}).Find(&shopcarts)
 	if result.RowsAffected == 0 {
-		return nil, status.Errorf(codes.InvalidArgument, "结算商品不能为0")
+		return nil, status.Errorf(codes.InvalidArgument, "没有选中任何商品")
 	}
 	// 获取用户选中的商品
-	for _, v := range shopcarts {
-		goodsIds = append(goodsIds, v.Goods)
+	for _, shopcart := range shopcarts {
+		goodsIds = append(goodsIds, shopcart.Goods)
 	}
 
 	// 调用商品微服务获取商品信息：价格
 	goodsList, err := GoodsSvc.BatchGetGoods(ctx, &BatchGoodsIdInfo{Id: goodsIds})
 	if err != nil {
-		return nil, status.Errorf(codes.Internal, "购物车中商品未找到")
+		return nil, status.Errorf(codes.Internal, "购物车中商品已失效，请重新下单", err)
 	}
 
-	var goodsInfos = make([]*GoodsStockInfo, len(shopcarts))
+	var goodsInfos = make([]*GoodsStockInfo, 0)
 	var orderAmount float32
-	var orderGoods = make([]*model.OrderGoods, len(shopcarts))
-	var shopMap = make(map[int32]int32, len(shopcarts))
+	var orderGoods = make([]*model.OrderGoods, 0)
+	var shopMap = make(map[int32]int32, 0)
 	for _, v := range shopcarts {
 		shopMap[v.Goods] = v.Nums
 	}
 
 	for _, goods := range goodsList.Data {
-		fmt.Println("goods:", goods)
 		// 商品价格 * 数量=订单总金额
 		orderAmount += goods.ShopPrice * float32(shopMap[goods.Id])
 		// 订单中的商品
@@ -69,10 +68,15 @@ func (*OrderService) CreateOrder(ctx context.Context, req *OrderRequest) (*Order
 		})
 	}
 
+	for _, v := range goodsInfos {
+		fmt.Println("v:", v)
+
+	}
+
 	// 扣减库存，调用库存微服务
 	_, err = StockSvc.Sell(ctx, &SellInfo{GoodsInfo: goodsInfos})
 	if err != nil {
-		return nil, status.Errorf(codes.ResourceExhausted, "库存不足，扣减库存失败")
+		return nil, status.Errorf(codes.ResourceExhausted, "库存不足，扣减库存失败", err.Error())
 	}
 
 	// 生成订单，包含订单基本信息表
@@ -92,11 +96,13 @@ func (*OrderService) CreateOrder(ctx context.Context, req *OrderRequest) (*Order
 		return nil, status.Errorf(codes.Internal, "订单生成失败")
 	}
 
+	fmt.Println("===============orderGoods:", len(orderGoods), order.ID)
 	for _, o := range orderGoods {
 		o.Order = int32(order.ID)
 	}
 	//  订单商品，批量每次插入100条
 	if result := DB.CreateInBatches(orderGoods, 100); result.Error != nil {
+		fmt.Println("result.Error:", result.Error)
 		tx.Rollback()
 		return nil, status.Errorf(codes.Internal, "订单商品生成失败")
 	}

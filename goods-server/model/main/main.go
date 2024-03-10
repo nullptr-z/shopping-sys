@@ -25,7 +25,7 @@ func main() {
 		},
 	)
 
-	dsn := "root:zhengmr0646@tcp(127.0.0.1:3306)/shop_goods_srv?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:zhengmr0646@tcp(192.168.1.107:3306)/shop_goods_srv?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: newLogger,
 		NamingStrategy: schema.NamingStrategy{

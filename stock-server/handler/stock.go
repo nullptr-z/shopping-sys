@@ -68,8 +68,11 @@ func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, err
 			return nil, status.Errorf(codes.Internal, "Redis lock failed")
 		}
 		// time.Sleep(10 * time.Second)
+		fmt.Println("ssssssssssssssss:", s)
 		ret := global.DB.Where(&model.Stock{Goods: goodsInfo.GoodsId}).First(&s)
-		if ret.RowsAffected == 0 {
+		fmt.Println("ret.RowsAffected:", ret)
+		fmt.Println("ssssssssssssssss:", s)
+		if s.Goods == 0 {
 			tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
 			return nil, status.Errorf(codes.InvalidArgument, "没有找到库存信息")
 		}

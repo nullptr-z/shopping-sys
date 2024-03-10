@@ -2,10 +2,13 @@ OUT_FILE_NAME = "api"
 
 
 run-user:
-	cd user-server && go run .
+	cd user-server && go run . -port 10001
 
 run-goods:
-	cd goods-server && go run .
+	cd goods-server && go run . -port 10002
+
+run-goods2:
+	cd goods_srv && go run . -port 10002
 
 run-stock:
 	cd stock-server && go run . -port 10003
@@ -18,6 +21,12 @@ run-user-web:
 
 watch-user-web:
 	cd api-http && make run-user
+
+watch-goods2:
+	@watchexec --restart --ignore docs --exts go make run-goods2
+
+watch-goods:
+	@watchexec --restart --ignore docs --exts go make run-goods
 
 watch-stock:
 	@watchexec --restart --ignore docs --exts go make run-stock
