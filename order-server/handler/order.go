@@ -124,7 +124,7 @@ func (*OrderService) OrderList(ctx context.Context, req *OrderFilterRequest) (*O
 	if ret.Error != nil {
 		return nil, status.Errorf(codes.Internal, "获取订单用户失败", ret.Error.Error())
 	}
-	ret = DB.Scopes(utils.Paginate(int(req.Pages), int(req.PageSize))).Find(&orderList)
+	ret = DB.Where(&model.OrderInfo{User: req.UserId}).Scopes(utils.Paginate(int(req.Pages), int(req.PageSize))).Find(&orderList)
 	if ret.Error != nil {
 		return nil, status.Errorf(codes.Internal, "获取订单列表失败", ret.Error.Error())
 	}
