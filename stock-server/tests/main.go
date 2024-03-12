@@ -35,6 +35,7 @@ func TestSellStock(goodsId, Num int, wg *sync.WaitGroup) {
 	_, err := client.Sell(
 		context.Background(),
 		&proto.SellInfo{
+			OrderSn: "123123sada1sd",
 			GoodsInfo: []*proto.GoodsStockInfo{
 				{GoodsId: int32(goodsId), Num: int32(Num)},
 			},
@@ -56,7 +57,7 @@ func main() {
 	// 扣减库存
 	// TestSellStock(421, 10)
 	var wg sync.WaitGroup
-	for i := 0; i < 20; i++ {
+	for i := 0; i < 10; i++ {
 		wg.Add(1)
 		go TestSellStock(421, 1, &wg)
 	}

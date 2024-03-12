@@ -36,7 +36,20 @@ func main() {
 		panic(err)
 	}
 
+	// order := model.StockSellReback{
+	// 	OrderSn: 1,
+	// 	GoodsDetail: model.GoodsDetailList{
+	// 		model.GoodsDetail{1, 1},
+	// 		model.GoodsDetail{1, 2},
+	// 	},
+	// }
+	// db.Create(&order)
+	// var selldetail model.StockSellReback
+	// db.Where("order_sn = ?", 1).First(&selldetail)
+	// fmt.Println("============stocklist:", selldetail.OrderSn, selldetail.GoodsDetail)
+
 	_ = db.AutoMigrate(
 		&model.Stock{},
+		&model.StockSellReback{},
 	)
 }

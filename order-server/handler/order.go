@@ -2,12 +2,17 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	. "order-server/global"
 	"order-server/model"
 	. "order-server/proto"
 	"order-server/utils"
 
+	"github.com/apache/rocketmq-client-go/v2"
+	"github.com/apache/rocketmq-client-go/v2/primitive"
+	"github.com/apache/rocketmq-client-go/v2/producer"
+	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -23,96 +28,44 @@ import (
 4. 从购物车中删除已购买的商品
 */
 func (*OrderService) CreateOrder(ctx context.Context, req *OrderRequest) (*OrderInfoResponse, error) {
-	var goodsIds []int32
-	var shopcarts []model.ShoppingCart
-	// 查询购物车列表，获取用户选中的商品
-	result := DB.Where(&model.ShoppingCart{User: req.UserId, Checked: true}).Find(&shopcarts)
-	if result.RowsAffected == 0 {
-		return nil, status.Errorf(codes.InvalidArgument, "没有选中任何商品")
-	}
-	// 获取用户选中的商品
-	for _, shopcart := range shopcarts {
-		goodsIds = append(goodsIds, shopcart.Goods)
-	}
-
-	// 调用商品微服务获取商品信息：价格
-	goodsList, err := GoodsSvc.BatchGetGoods(ctx, &BatchGoodsIdInfo{Id: goodsIds})
+	o := OrderListener{}
+	p, err := rocketmq.NewTransactionProducer(
+		&o,
+		producer.WithNameServer([]string{"192.168.1.107:9876"}),
+	)
 	if err != nil {
-		return nil, status.Errorf(codes.Internal, "购物车中商品已失效，请重新下单", err)
+		zap.S().Errorf("生成producer失败 %s", err.Error())
+		return nil, err
 	}
 
-	var goodsInfos = make([]*GoodsStockInfo, 0)
-	var orderAmount float32
-	var orderGoods = make([]*model.OrderGoods, 0)
-	var shopMap = make(map[int32]int32, 0)
-	for _, v := range shopcarts {
-		shopMap[v.Goods] = v.Nums
+	if err = p.Start(); err != nil {
+		zap.S().Errorf("启动producer失败 %s", err.Error())
+		return nil, err
 	}
+	defer p.Shutdown()
 
-	for _, goods := range goodsList.Data {
-		// 商品价格 * 数量=订单总金额
-		orderAmount += goods.ShopPrice * float32(shopMap[goods.Id])
-		// 订单中的商品
-		orderGoods = append(orderGoods, &model.OrderGoods{
-			// Order:      req.Id, 这里还没有生成订单
-			Goods:      goods.Id,
-			GoodsName:  goods.Name,
-			GoodsImage: goods.GoodsFrontImage,
-			GoodsPrice: goods.ShopPrice,
-			Nums:       shopMap[goods.Id],
-		})
-
-		goodsInfos = append(goodsInfos, &GoodsStockInfo{
-			GoodsId: goods.Id,
-			Num:     shopMap[goods.Id],
-		})
-	}
-
-	for _, v := range goodsInfos {
-		fmt.Println("v:", v)
-
-	}
-
-	// 扣减库存，调用库存微服务
-	_, err = StockSvc.Sell(ctx, &SellInfo{GoodsInfo: goodsInfos})
+	req.Sn = utils.GenerateOrderSn(req.UserId)
+	messageStr, err := json.Marshal(req)
 	if err != nil {
-		return nil, status.Errorf(codes.ResourceExhausted, "库存不足，扣减库存失败", err.Error())
+		zap.S().Errorf("订单序列化失败 %s", err.Error())
+		return nil, err
 	}
 
-	// 生成订单，包含订单基本信息表
-	order := model.OrderInfo{
-		User:         req.UserId,
-		OrderSn:      utils.GenerateOrderSn(req.UserId),
-		OrderMount:   orderAmount,
-		Address:      req.Address,
-		Post:         req.Post,
-		SignerName:   req.Name,
-		SingerMobile: req.Mobile,
-	}
-	// #本地事务
-	tx := DB.Begin()
-	if result := tx.Save(&order); result.Error != nil {
-		tx.Rollback()
-		return nil, status.Errorf(codes.Internal, "订单生成失败")
+	_, err = p.SendMessageInTransaction(
+		context.Background(),
+		primitive.NewMessage("Order", messageStr),
+	)
+	if o.Code != codes.OK || err != nil {
+		zap.S().Errorf("投递失败: ", o.Code, o.ErrorMsg)
+		return nil, status.Error(o.Code, o.ErrorMsg)
 	}
 
-	fmt.Println("===============orderGoods:", len(orderGoods), order.ID)
-	for _, o := range orderGoods {
-		o.Order = int32(order.ID)
-	}
-	//  订单商品，批量每次插入100条
-	if result := DB.CreateInBatches(orderGoods, 100); result.Error != nil {
-		fmt.Println("result.Error:", result.Error)
-		tx.Rollback()
-		return nil, status.Errorf(codes.Internal, "订单商品生成失败")
-	}
-	tx.Commit()
-	// ##本地事务结束
+	// if err = p.Shutdown(); err != nil {
+	// 	zap.S().Info("producer shutdown", err.Error())
+	// 	return nil, err
+	// }
 
-	// 从购物车，删除已购买的商品
-	DB.Where(&model.ShoppingCart{User: req.UserId, Checked: true}).Delete(&model.ShoppingCart{})
-
-	return &OrderInfoResponse{Id: int32(order.ID), OrderSn: order.OrderSn, Total: order.OrderMount}, nil
+	return &OrderInfoResponse{Id: int32(o.ID), OrderSn: o.OrderSn, Total: o.OrderMount}, nil
 }
 
 // OrderList implements proto.OrderServer.

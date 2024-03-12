@@ -33,14 +33,16 @@ func TestCreateCartItem(udi, goodsid, num int32) {
 	fmt.Println("res: ", res)
 }
 
-func TestCreateCartList(udi int32) {
-	res, err := client.CartItemList(context.Background(), &proto.UserInfo{Id: udi})
+func TestCreateCartList(uid int32) {
+	fmt.Println("udi:", uid)
+	res, err := client.CartItemList(context.Background(), &proto.UserInfo{Id: uid})
 	if err != nil {
 		fmt.Println(" error:", err)
 		return
 	}
+	fmt.Println("======================", len(res.Data))
 	for _, goods := range res.Data {
-		fmt.Println("goods:", goods)
+		fmt.Println("=======================TestCreateCartList goods:", goods)
 	}
 }
 
@@ -56,9 +58,9 @@ func TestUpdateCartItem(id int32) {
 	fmt.Println("res: ", res)
 }
 
-func TestCreateOrder() {
+func TestCreateOrder(uid int32) {
 	res, err := client.CreateOrder(context.Background(), &proto.OrderRequest{
-		UserId:  10,
+		UserId:  uid,
 		Address: "北京市朝阳区",
 		Name:    "测试",
 		Mobile:  "12345678901",
@@ -96,15 +98,16 @@ func TestOrderList() {
 }
 
 func main() {
+	var uid int32 = 10
+	// var goodsId int32 = 421
 	// 购物车Tests
-	// TestCreateCartItem(10, 422, 5)
-	// TestCreateCartItem(10, 421, 5)
+	// TestCreateCartItem(uid, 421, 1)
+	// TestCreateCartItem(uid, 422, 2)
+	// TestCreateCartList(uid)
 	// TestUpdateCartItem(6)
-	// TestUpdateCartItem(7)
-	// TestCreateCartList(10)
 
 	// 订单Tests
-	// TestCreateOrder()
+	TestCreateOrder(uid)
 	// TestOrderDetail(30)
-	TestOrderList()
+	// TestOrderList()
 }

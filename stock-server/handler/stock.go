@@ -2,17 +2,21 @@ package handler
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"stock-server/global"
 	"stock-server/model"
 	. "stock-server/proto"
 	"time"
 
+	"github.com/apache/rocketmq-client-go/v2/consumer"
+	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"github.com/golang/protobuf/ptypes/empty"
 	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"gorm.io/gorm"
 )
 
 type StockService struct {
@@ -60,6 +64,9 @@ func (*StockService) InvDetail(ctx context.Context, req *GoodsStockInfo) (*Goods
 func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, error) {
 	var s model.Stock
 	tx := global.DB.Begin()
+
+	var goodsList []model.GoodsDetail
+
 	for _, goodsInfo := range req.GoodsInfo {
 		mutexname := fmt.Sprint("stockSell.", goodsInfo.GoodsId)
 		mutex := global.Rdsync.NewMutex(mutexname)
@@ -71,7 +78,7 @@ func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, err
 		ret := global.DB.Where(&model.Stock{Goods: goodsInfo.GoodsId}).First(&s)
 		if ret.Error != nil {
 			tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
-			return nil, status.Errorf(codes.InvalidArgument, "没有找到库存信息")
+			return nil, status.Errorf(codes.InvalidArgument, "没有找到库存信息，"+ret.Error.Error())
 		}
 		// 库存是否充足
 		if s.Stocks < goodsInfo.Num {
@@ -86,6 +93,18 @@ func (*StockService) Sell(ctx context.Context, req *SellInfo) (*empty.Empty, err
 			zap.S().Error("Redis unlock failed", zap.Error(err))
 			return nil, status.Errorf(codes.Internal, "Redis unlock failed")
 		}
+
+		goodsList = append(goodsList, model.GoodsDetail{Goods: goodsInfo.GoodsId, Num: goodsInfo.Num})
+	}
+	// 添加库存扣减记录
+	sellDetail := model.StockSellReback{
+		OrderSn:   req.OrderSn,
+		Status:    1,
+		GoodsList: goodsList,
+	}
+	if result := tx.Create(&sellDetail); result.RowsAffected == 0 {
+		tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
+		return nil, status.Errorf(codes.Internal, "保存库存扣减记录失败")
 	}
 	tx.Commit() // 提交事务
 	return &emptypb.Empty{}, nil
@@ -104,6 +123,7 @@ func (*StockService) Sell_mysql_lock(ctx context.Context, req *SellInfo) (*empty
 		// 悲观锁
 		// ret := tx.Clauses(clause.Locking{Strength: "UPDATE"}).Where(&model.Stock{Goods: goodsInfo.GoodsId}).First(&s)
 		for {
+			fmt.Println(" ================goodsInfo.GoodsId:", goodsInfo.GoodsId)
 			ret := global.DB.Where(&model.Stock{Goods: goodsInfo.GoodsId}).First(&s)
 			if ret.RowsAffected == 0 {
 				tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
@@ -160,3 +180,59 @@ func (*StockService) Reback(ctx context.Context, req *SellInfo) (*empty.Empty, e
 }
 
 func (*StockService) mustEmbedUnimplementedStockServer() {}
+
+/*
+1. 需要知道是哪个订单，哪些商品，要归还多少。
+2. 需要确保幂等性，不能因为网络等延迟导致的重复归还。新建一张表，设置订单为主键，保证每个订单只能归还一次
+3. 订单中商品需要同时满足事务性，全部归还成功，才能取消订单
+*/
+func StockReback(ctx context.Context, msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error) {
+	type OrderInfo struct {
+		OrderSn string `json:"sn"`
+	}
+	// 打印接收到的消息
+	for _, msg := range msgs {
+		var orderInfo OrderInfo
+		fmt.Printf("orderInfo..............:%s", msg.Body)
+		err := json.Unmarshal(msg.Body, &orderInfo)
+		fmt.Println("orderInfo。。。。。。。。:", orderInfo)
+		if err != nil {
+			zap.S().Error("json.Unmarshal failed", err.Error())
+			return consumer.ConsumeSuccess, nil // 数据有问题，直接丢弃
+		}
+		// 查询扣减记录
+		tx := global.DB.Begin()
+		var sellDetail model.StockSellReback
+		result := tx.Where(&model.StockSellReback{
+			OrderSn: orderInfo.OrderSn,
+			Status:  1,
+		}).First(&sellDetail)
+		if result.RowsAffected == 0 {
+			zap.S().Info("该库存已经归还过了")
+			return consumer.ConsumeSuccess, nil
+		}
+
+		// 逐个归还商品
+		for _, g := range sellDetail.GoodsList {
+			result := tx.Model(&model.Stock{}).Where(&model.Stock{Goods: g.Goods}).Update("stocks", gorm.Expr("stocks + ?", g.Num))
+			if result.RowsAffected == 0 {
+				zap.S().Info("reback goods failed:", result.Error.Error())
+				tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
+				return consumer.ConsumeRetryLater, nil
+			}
+		}
+
+		// 标记为已归还
+		sellDetail.Status = 2
+		result = tx.Model(&sellDetail).Where(&model.StockSellReback{OrderSn: orderInfo.OrderSn}).Update("status", 2)
+		if result.RowsAffected == 0 {
+			zap.S().Info("set sellDetail.Status failed:", result.Error.Error())
+			tx.Rollback() // 事务回滚，如果之前的商品成功扣减了的话
+			return consumer.ConsumeRetryLater, nil
+		}
+		tx.Commit()
+	}
+
+	// 返回成功到主服务器，表示接受到了消息
+	return consumer.ConsumeSuccess, nil
+}

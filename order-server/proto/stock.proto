@@ -18,5 +18,6 @@ message GoodsStockInfo{
 
 message SellInfo{
   repeated GoodsStockInfo goodsInfo=1;
+  string orderSn =2;
 }
 

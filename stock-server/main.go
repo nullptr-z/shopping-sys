@@ -13,6 +13,8 @@ import (
 	"stock-server/utils"
 	"syscall"
 
+	"github.com/apache/rocketmq-client-go/v2"
+	"github.com/apache/rocketmq-client-go/v2/consumer"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	gprcCheck "google.golang.org/grpc/health/grpc_health_v1"
@@ -49,6 +51,16 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprint("error:", err.Error()))
 	}
+
+	// 监听库存归还topic
+	c, _ := rocketmq.NewPushConsumer(
+		consumer.WithNameServer([]string{"192.168.1.107:9876"}),
+		consumer.WithGroupName("stock_reback"),
+	)
+	if err := c.Subscribe("Order", consumer.MessageSelector{}, handler.StockReback); err != nil {
+		fmt.Println("读取消息失败")
+	}
+	c.Start()
 
 	go func() {
 		err = server.Serve(lis)

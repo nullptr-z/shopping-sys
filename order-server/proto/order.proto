@@ -45,6 +45,7 @@ message OrderRequest {
     string name = 4;
     string mobile = 5;
     string post = 6;
+    string sn =7;
 }
 
 message OrderInfoResponse {
