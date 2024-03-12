@@ -6,10 +6,12 @@ import (
 	"fmt"
 	. "order-server/global"
 	"order-server/model"
+	"order-server/proto"
 	. "order-server/proto"
 	"order-server/utils"
 
 	"github.com/apache/rocketmq-client-go/v2"
+	"github.com/apache/rocketmq-client-go/v2/consumer"
 	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"github.com/apache/rocketmq-client-go/v2/producer"
 	"go.uber.org/zap"
@@ -124,4 +126,51 @@ func (*OrderService) UpdateOrderStatus(ctx context.Context, req *OrderStatus) (*
 	}
 
 	return &emptypb.Empty{}, nil
+}
+
+// 查询订单支付状态，如果支付成功，啥也不做，如果未支付，归还库存
+func OrderTimeout(ctx context.Context, msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error) {
+	for _, msg := range msgs {
+		var req proto.OrderRequest
+		json.Unmarshal(msg.Body, &req)
+
+		zap.S().Info("获取到订单超时消息")
+
+		var orderInfo model.OrderInfo
+		ret := DB.Where(&model.OrderInfo{OrderSn: req.Sn}).First(&orderInfo)
+		if ret.Error != nil {
+			return consumer.ConsumeSuccess, nil
+		}
+		if orderInfo.Status != "TRADE_SUCCESS" {
+			tx := DB.Begin()
+			orderInfo.Status = "TRADE_CLOSED"
+			tx.Save(&orderInfo)
+			// 归还库存，发送一个归还订单的消息
+			p, err := rocketmq.NewProducer(producer.WithNameServer([]string{"192.168.1.107:9876"}))
+			if err != nil {
+				zap.S().Errorf("订单超市，生成producer失败 %s", err.Error())
+				tx.Rollback()
+				return consumer.ConsumeRetryLater, nil
+			}
+
+			if err = p.Start(); err != nil {
+				zap.S().Errorf("订单超市，启动producer失败 %s", err.Error())
+				tx.Rollback()
+				return consumer.ConsumeRetryLater, nil
+			}
+			// defer p.Shutdown()
+
+			message := primitive.NewMessage("Order", msg.Body)
+			message.WithDelayTimeLevel(4)
+			_, err = p.SendSync(context.Background(), message)
+			if err != nil {
+				zap.S().Errorf("延时消息发送失败 %s", err.Error())
+				tx.Rollback()
+				return consumer.ConsumeRetryLater, nil
+			}
+			tx.Commit()
+		}
+	}
+
+	return consumer.ConsumeSuccess, nil
 }

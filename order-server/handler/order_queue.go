@@ -9,7 +9,10 @@ import (
 	"order-server/proto"
 	. "order-server/proto"
 
+	"github.com/apache/rocketmq-client-go/v2"
 	"github.com/apache/rocketmq-client-go/v2/primitive"
+	"github.com/apache/rocketmq-client-go/v2/producer"
+	"go.uber.org/zap"
 	"google.golang.org/grpc/codes"
 )
 
@@ -21,12 +24,13 @@ type OrderListener struct {
 
 // 扣减库存>生成订单
 func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitive.LocalTransactionState {
+	// ------------前戏，准备各种数据，查询购物车,用户勾选的商品，商品价格--------------
 	var req proto.OrderRequest
 	err := json.Unmarshal(msg.Body, &req)
 	if err != nil {
 		o.Code = codes.Internal
 		o.ErrorMsg = err.Error()
-		fmt.Println("json.Unmarshal error:", err.Error())
+		zap.S().Error("json.Unmarshal error:", err.Error())
 		return primitive.RollbackMessageState
 	}
 
@@ -77,11 +81,7 @@ func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitiv
 		})
 	}
 
-	// for _, v := range goodsInfos {
-	// 	fmt.Println("v:", v)
-
-	// }
-
+	//-------------主逻辑开始，首先扣减库存-----------------
 	// 扣减库存，调用库存微服务
 	_, err = StockSvc.Sell(context.Background(), &SellInfo{OrderSn: req.Sn, GoodsInfo: goodsInfos})
 	if err != nil {
@@ -91,8 +91,9 @@ func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitiv
 		o.ErrorMsg = "库存扣减失败，" + err.Error()
 		return primitive.RollbackMessageState
 	}
-	// -----------------至此，库存扣减成功，生成订单----------------------
-	fmt.Println("至此，库存扣减成功，生成订单:")
+
+	// -----------------至此，库存扣减成功，接下来开始生成订单----------------------
+	zap.S().Info("库存扣减成功")
 	// o.Code = codes.Internal
 	// return primitive.UnknowState
 
@@ -134,6 +135,37 @@ func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitiv
 		o.ErrorMsg = "删除购物车商品记录失败，" + result.Error.Error()
 		return primitive.CommitMessageState // 删除购物车商品失败，归还库存
 	}
+	// transactionWithTimeoutCancel([]byte(req.Sn))
+
+	// 延时消息发送，订单超时
+	p, err := rocketmq.NewProducer(producer.WithNameServer([]string{"192.168.1.107:9876"}))
+	if err != nil {
+		zap.S().Errorf("延迟，生成producer失败 %s", err.Error())
+		tx.Rollback()
+		o.Code = codes.Internal
+		o.ErrorMsg = "延迟，生成producer失败" + err.Error()
+		return primitive.CommitMessageState // 延时消息发送失败，归还库存
+	}
+
+	if err = p.Start(); err != nil {
+		zap.S().Errorf("延迟，启动producer失败 %s", err.Error())
+		tx.Rollback()
+		o.Code = codes.Internal
+		o.ErrorMsg = "延迟，启动producer失败" + err.Error()
+		return primitive.CommitMessageState // 延时消息发送失败，归还库存
+	}
+	// defer p.Shutdown()
+
+	message := primitive.NewMessage("order_timeout", msg.Body)
+	message.WithDelayTimeLevel(5)
+	_, err = p.SendSync(context.Background(), message)
+	if err != nil {
+		zap.S().Errorf("延时消息发送失败 %s", err.Error())
+		tx.Rollback()
+		o.Code = codes.Internal
+		o.ErrorMsg = "延时消息发送失败" + err.Error()
+		return primitive.CommitMessageState // 延时消息发送失败，归还库存
+	}
 
 	tx.Commit()
 	// ##本地事务结束
@@ -146,6 +178,10 @@ func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitiv
 
 	//本地执行逻辑无缘无故失败 代码异常 宕机
 	return primitive.RollbackMessageState
+}
+
+// 延时消息，订单超时，取消订单
+func transactionWithTimeoutCancel(sn []byte) {
 }
 
 func (o *OrderListener) CheckLocalTransaction(msg *primitive.MessageExt) primitive.LocalTransactionState {

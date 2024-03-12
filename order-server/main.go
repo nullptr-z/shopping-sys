@@ -13,6 +13,8 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/apache/rocketmq-client-go/v2"
+	"github.com/apache/rocketmq-client-go/v2/consumer"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health"
 	gprcCheck "google.golang.org/grpc/health/grpc_health_v1"
@@ -50,6 +52,17 @@ func main() {
 	if err != nil {
 		panic(fmt.Sprint("error:", err.Error()))
 	}
+
+	// 监听订单超时topic
+	c, _ := rocketmq.NewPushConsumer(
+		consumer.WithNameServer([]string{"192.168.1.107:9876"}),
+		consumer.WithGroupName("order_reback"),
+	)
+	if err := c.Subscribe("order_timeout", consumer.MessageSelector{}, handler.OrderTimeout); err != nil {
+		fmt.Println("读取消息失败")
+	}
+	c.Start()
+	defer c.Shutdown()
 
 	go func() {
 		err = server.Serve(lis)
