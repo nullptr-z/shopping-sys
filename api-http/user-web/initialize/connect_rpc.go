@@ -66,7 +66,7 @@ func ConnUserRpc() error {
 	conn, err := grpc.Dial(
 		rpcAddress,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy": "round_robin"}`),
+		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy": "round_robin"}`), // 轮询策略,负载均衡
 	)
 	if err != nil {
 		zap.S().Fatal("[HandlerGetList] connect rpc server of user failed", err)
