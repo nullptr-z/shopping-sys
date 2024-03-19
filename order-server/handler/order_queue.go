@@ -22,6 +22,7 @@ type OrderListener struct {
 	ErrorMsg string
 }
 
+// MQ本地事务
 // 扣减库存>生成订单
 func (o *OrderListener) ExecuteLocalTransaction(msg *primitive.Message) primitive.LocalTransactionState {
 	// ------------前戏，准备各种数据，查询购物车,用户勾选的商品，商品价格--------------
@@ -190,9 +191,11 @@ func (o *OrderListener) CheckLocalTransaction(msg *primitive.MessageExt) primiti
 	json.Unmarshal(msg.Body, &req)
 
 	var order model.OrderInfo
-	// 如何检查本地事务是否成功
+	// 订单存在代表成功，撤回消息
 	result := DB.Where(&model.OrderInfo{OrderSn: o.OrderSn}).First(&order)
 	if result.Error != nil {
+		// 查询订单出现异常了，可能是网络问题，不代表订单不存在
+		// 需要根据返回的状态码进行判断，是否要回滚
 		return primitive.CommitMessageState
 	}
 

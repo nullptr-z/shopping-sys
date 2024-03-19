@@ -46,6 +46,7 @@ func (*OrderService) CreateOrder(ctx context.Context, req *OrderRequest) (*Order
 	}
 	defer p.Shutdown()
 
+	// 一定要在这里生成好了传进去，因为ExecuteLocalTransaction，回查方法也需要这个数据，必须一致
 	req.Sn = utils.GenerateOrderSn(req.UserId)
 	messageStr, err := json.Marshal(req)
 	if err != nil {
